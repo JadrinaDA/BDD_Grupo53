@@ -5,6 +5,10 @@ with open("Datos/personal_instalacion.csv", "r") as archivo:
 	new_info = []
 	for line in info:
 		line = line.strip().split(",")
+		if line[3] == "mujer":
+			line[3] = "F"
+		else:
+			line[3] = "M"
 		new_line = [line[1], line[0], line[2], line[3], line[4]]
 		new_info.append(new_line)
 
