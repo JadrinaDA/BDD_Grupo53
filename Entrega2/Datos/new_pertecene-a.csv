@@ -1,0 +1,217 @@
+id_instalacion,nombre_puerto,ciudad_puerto
+0,Taltal,Taltal
+1,Arica,Arica
+2,Cabo Negro,Primavera
+3,Quintero,Quintero
+4,Caleta Patillos,Iquique
+5,Caleta Coloso,Antofagasta
+6,Puerto Angamos,Mejillones
+7,Puerto Angamos,Mejillones
+8,Caldera,Caldera
+9,Antofagasta,Antofagasta
+10,Cruz Grande,La Higuera
+11,Lota,Lota
+12,Calderilla,Caldera
+13,Caldera,Caldera
+14,Corral,Corral
+15,Guayacan,Coquimbo
+16,Caldera,Caldera
+17,Tocopilla,Tocopilla
+18,Lirquen,Penco
+19,Cruz Grande,La Higuera
+20,Chacabuco,Aysen
+21,La Serena,La Serena
+22,Quellon,Quellon
+23,Mejillones,Mejillones
+24,Barquito,Chañaral
+25,Arica,Arica
+26,La Serena,La Serena
+27,Mejillones,Mejillones
+28,Quintero,Quintero
+29,Calderilla,Caldera
+30,Lirquen,Penco
+31,Quintero,Quintero
+32,Quellon,Quellon
+33,Puerto Montt,Puerto Montt
+34,Ancud,Ancud
+35,Arica,Arica
+36,San Antonio,San Antonio
+37,Valdivia,Valdivia
+38,Lirquen,Penco
+39,Calderilla,Caldera
+40,Caleta Patillos,Iquique
+41,Arica,Arica
+42,Cruz Grande,La Higuera
+43,Coronel,Coronel
+44,Calderilla,Caldera
+45,Guayacan,Coquimbo
+46,Talcahuano,Talcahuano
+47,Quintero,Quintero
+48,Caldera,Caldera
+49,Lota,Lota
+50,Lota,Lota
+51,Barquito,Chañaral
+52,Quintero,Quintero
+53,Arica,Arica
+54,Puerto Montt,Puerto Montt
+55,Mejillones,Mejillones
+56,Puerto Angamos,Mejillones
+57,Coronel,Coronel
+58,Taltal,Taltal
+59,Barquito,Chañaral
+60,Quintero,Quintero
+61,Arica,Arica
+62,Calderilla,Caldera
+63,Lota,Lota
+64,Caleta Coloso,Antofagasta
+65,Caleta Coloso,Antofagasta
+66,Taltal,Taltal
+67,Port Williams,Puerto Williams
+68,Isla Guarello,Isla Guarello
+69,Caleta Patillos,Iquique
+70,Coronel,Coronel
+71,Caleta Patillos,Iquique
+72,Guayacan,Coquimbo
+73,Guayacan,Coquimbo
+74,Mejillones,Mejillones
+75,Quintero,Quintero
+76,Corral,Corral
+77,Puerto Natales,Puerto Natales
+78,Calderilla,Caldera
+79,Arica,Arica
+80,Caldera,Caldera
+81,Castro,Castro
+82,Caleta Coloso,Antofagasta
+83,Caleta Coloso,Antofagasta
+84,Quellon,Quellon
+85,Penco,Penco
+86,Cabo Negro,Primavera
+87,Isla Guarello,Isla Guarello
+88,Castro,Castro
+89,Puerto Natales,Puerto Natales
+90,Taltal,Taltal
+91,La Serena,La Serena
+92,Cruz Grande,La Higuera
+93,Puerto Montt,Puerto Montt
+94,Huasco,Huasco
+95,Puerto Chacabuco,Aysen
+96,Guayacan,Coquimbo
+97,Puerto Angamos,Mejillones
+98,Isla de Pascua,Hanga Roa
+99,Tocopilla,Tocopilla
+100,Talcahuano,Talcahuano
+101,La Serena,La Serena
+102,Ancud,Ancud
+103,Quintero,Quintero
+104,Coronel,Coronel
+105,Calderilla,Caldera
+106,Punta Arenas,Punta Arenas
+107,Penco,Penco
+108,Ancud,Ancud
+109,La Serena,La Serena
+110,Puerto Angamos,Mejillones
+111,Valparaiso,Valparaiso
+112,Ancud,Ancud
+113,Coronel,Coronel
+114,Puerto Angamos,Mejillones
+115,Penco,Penco
+116,Coquimbo,Coquimbo
+117,Coronel,Coronel
+118,Port Williams,Puerto Williams
+119,Cruz Grande,La Higuera
+120,Guayacan,Coquimbo
+121,Ancud,Ancud
+122,Penco,Penco
+123,Quintero,Quintero
+124,Tocopilla,Tocopilla
+125,Isla Guarello,Isla Guarello
+126,Punta Patache,Iquique
+127,Chacabuco,Aysen
+128,San Antonio,San Antonio
+129,Isla Guarello,Isla Guarello
+130,Ancud,Ancud
+131,Calderilla,Caldera
+132,Chacabuco,Aysen
+133,Caleta Coloso,Antofagasta
+134,Mejillones,Mejillones
+135,Punta Arenas,Punta Arenas
+136,Mejillones,Mejillones
+137,Cabo Negro,Primavera
+138,Puerto Angamos,Mejillones
+139,Mejillones,Mejillones
+140,Arica,Arica
+141,Quintero,Quintero
+142,Taltal,Taltal
+143,Puerto Montt,Puerto Montt
+144,Punta Patache,Iquique
+145,San Vicente,San Vicente
+146,Guayacan,Coquimbo
+147,Valparaiso,Valparaiso
+148,Punta Arenas,Punta Arenas
+149,Antofagasta,Antofagasta
+150,Chacabuco,Aysen
+151,Puerto Montt,Puerto Montt
+152,San Vicente,San Vicente
+153,Port Williams,Puerto Williams
+154,Quemchi,Quemchi
+155,Barquito,Chañaral
+156,Balmaceda,Cisnes
+157,Lota,Lota
+158,Taltal,Taltal
+159,Chacabuco,Aysen
+160,Barquito,Chañaral
+161,Isla de Pascua,Hanga Roa
+162,Arica,Arica
+163,Cabo Negro,Primavera
+164,Quintero,Quintero
+165,Caldera,Caldera
+166,Calderilla,Caldera
+167,Port Williams,Puerto Williams
+168,Caleta Patillos,Iquique
+169,San Vicente,San Vicente
+170,Coronel,Coronel
+171,Chacabuco,Aysen
+172,Huasco,Huasco
+173,Puerto Montt,Puerto Montt
+174,Chacabuco,Aysen
+175,La Serena,La Serena
+176,Quellon,Quellon
+177,La Serena,La Serena
+178,Isla Guarello,Isla Guarello
+179,Puerto Angamos,Mejillones
+180,Lirquen,Penco
+181,Cabo Negro,Primavera
+182,Antofagasta,Antofagasta
+183,Castro,Castro
+184,Calderilla,Caldera
+185,Calderilla,Caldera
+186,Barquito,Chañaral
+187,Lota,Lota
+188,Huasco,Huasco
+189,Huasco,Huasco
+190,Port Williams,Puerto Williams
+191,Chacabuco,Aysen
+192,Mejillones,Mejillones
+193,Iquique,Iquique
+194,Cruz Grande,La Higuera
+195,Punta Patache,Iquique
+196,Balmaceda,Cisnes
+197,Caleta Patillos,Iquique
+198,Antofagasta,Antofagasta
+199,Quellon,Quellon
+200,Quemchi,Quemchi
+201,Talcahuano,Talcahuano
+202,Cruz Grande,La Higuera
+203,Barquito,Chañaral
+204,Ancud,Ancud
+205,Quintero,Quintero
+206,Arica,Arica
+207,Huasco,Huasco
+208,Valparaiso,Valparaiso
+209,Lota,Lota
+210,Caleta Coloso,Antofagasta
+211,Corral,Corral
+212,Mejillones,Mejillones
+213,Antofagasta,Antofagasta
+214,Guayacan,Coquimbo
+215,Chacabuco,Aysen
