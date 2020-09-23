@@ -11,7 +11,7 @@ with open("Datos/puertos.csv", "r",encoding="UTF-8") as archivo:
 	informacion_que_quiero = []
 	for tupla_informacion_completa in informacion:
 		tupla_informacion_completa = tupla_informacion_completa.strip().split(",")
-		informacion_que_quiero.append((tupla_informacion_completa[0],tupla_informacion_completa[1],tupla_informacion_completa[2]))
+		informacion_que_quiero.append((tupla_informacion_completa[0],str(tupla_informacion_completa[1]),tupla_informacion_completa[2]))
 	informacion_que_quiero_no_repetida = set(informacion_que_quiero)
 	informacion_que_quiero_no_repetida = list(informacion_que_quiero_no_repetida)
 	informacion_que_quiero_no_repetida.sort(key=ordename)
