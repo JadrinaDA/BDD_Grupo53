@@ -12,14 +12,20 @@
 
 <table>
   <tr>
-    <th>ID</th>
+    <th>RUT</th>
     <th>Nombre</th>
-    <th>Altura</th>
+    <th>Edad</th>
+    <th>Sexo</th>
   </tr>
   
   <?php
     foreach ($result as $r) {
-      echo "<tr><td>$r[0]</td><</tr>";
+      echo "<tr>";
+      echo "<td>".$r[0]."</td>";
+      echo "<td>".$r[1]."</td>";
+      echo "<td>".$r[2]."</td>";
+      echo "<td>".$r[3]."</td>";
+      echo "</tr>";
     }
   ?>
 </table>
