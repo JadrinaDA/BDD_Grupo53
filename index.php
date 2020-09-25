@@ -11,6 +11,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
 </head>
 
+<body>
+  <h1 align="center">Biblioteca Naviera </h1>
+  <p style="text-align:center;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
+
+  <br>
+
+  <h3 align="center"> ¿Quieres buscar un puerto por su nombre?</h3>
+
+  <form align="center" action="consultas/consulta_puerto_nombre.php" method="post">
+    Nombre:
+    <input type="text" name="nombre_puerto">
+    <br/><br/>
+    <input type="submit" value="Buscar">
+  </form>
+  
+  <br>
+  <br>
+  <br>
+</body>
+
 <?php
   $user = 'grupo53';
   $password = 'huertitaismybae';
