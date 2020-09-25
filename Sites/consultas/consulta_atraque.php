@@ -16,7 +16,7 @@
 
 <table>
   <tr>
-    <th>Barco/th>
+    <th>Barco</th>
     <th>Puerto</th>
   </tr>
   
