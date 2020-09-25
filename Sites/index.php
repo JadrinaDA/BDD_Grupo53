@@ -19,6 +19,19 @@
   <br>
   <br>
 
+  <h3 align="center"> ¿Quieres buscar a los jefes de un puerto</h3>
+
+  <form align="center" action="consultas/consulta_personal.php" method="post">
+    Nombre Puerto:
+    <input type="text" name="nombre_puerto">
+    <br/><br/>
+    <input type="submit" value="Buscar">
+  </form>
+
+  <br>
+  <br>
+  <br>
+
   <h3 align="center">¿Quieres ver todos los puertos y sus ciudades?</h3>
 
   <form align="center" action="consultas/consulta_puerto.php" method="post">
