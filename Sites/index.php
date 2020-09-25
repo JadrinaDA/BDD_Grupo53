@@ -11,12 +11,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
 </head>
 
-<?php
-  $user = 'grupo53';
-  $password = 'huertitaismybae';
-  $databaseName = 'grupo53e2';
-  $db = new PDO("pgsql:dbname=$databaseName;host=localhost;port=5432;user=$user;password=$password");
+<body>
+  <h1 align="center">Biblioteca Naviera </h1>
+  <p style="text-align:center;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
 
+  <br>
+
+  <h3 align="center"> ¿Quieres buscar un puerto por su nombre?</h3>
+
+  <form align="center" action="consultas/consulta_puerto_nombre.php" method="post">
+    Nombre:
+    <input type="text" name="nombre_puerto">
+    <br/><br/>
+    <input type="submit" value="Buscar">
+  </form>
+  
+  <br>
+  <br>
+  <br>
+</body>
+
+<?php
+  require("config/conexion.php");
   $query_string = "SELECT * FROM Personal;";
   $query = $db -> prepare($query_string);
   $query -> execute();
