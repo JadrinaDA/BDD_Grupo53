@@ -38,6 +38,16 @@
   <button type="submit" class="btn btn-primary">Buscar</button>
   </form>
 
+  <br>
+  <br>
+  <br>
+
+  <h3 align="center">¿Quieres ver todos los puertos con al menos un astillero?</h3>
+
+  <form align="center" action="consultas/consulta_puerto_astillero.php" method="post">
+  <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+
 </body>
 
 </table>
