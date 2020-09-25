@@ -34,12 +34,12 @@
 
   <h3 align="center"> ¿Quieres buscar a las veces que un barco a atracado en un puerto?</h3>
 
-  <form align="center" action="consultas/consulta_personal.php" method="post">
+  <form align="center" action="consultas/consulta_atraque.php" method="post">
     Nombre Puerto:
     <input type="text" name="nombre_puerto">
     <br/>
     Nombre Barco:
-    <input type="text" name="nombre_puerto">
+    <input type="text" name="nombre_barco">
     <br/><br/>
     <input type="submit" value="Buscar">
   </form>
