@@ -32,7 +32,9 @@
 
   <h3 align="center">¿Quieres ver todos los puertos y sus ciudades?</h3>
 
-  <button type="button" class="btn btn-primary">Buscar</button>
+  <form align="center" action="consultas/consulta_puerto.php" method="post">
+  <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
 
 </body>
 
