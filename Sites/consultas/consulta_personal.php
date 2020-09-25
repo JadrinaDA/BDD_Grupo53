@@ -3,7 +3,7 @@
 <body>
   
 <?php
-  require("config/conexion.php");
+  require("../config/conexion.php");
 
   $nombre = $_POST["nombre_puerto"];
 
