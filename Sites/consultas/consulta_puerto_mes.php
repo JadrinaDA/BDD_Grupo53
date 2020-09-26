@@ -31,13 +31,11 @@
 
 	<table>
     <tr>
-      <th>Nombre</th>
-      <th>Ciudad</th>
-      <th>Region</th>
+      <th>Nombre Puerto</th>
     </tr>
   <?php
 	foreach ($puertos as $puerto) {
-  		echo "<tr> <td>$puerto[0]</td> <td>$puerto[1]</td> <td>$puerto[2]</td> </tr>";
+  		echo "<tr> <td>$puerto[0]</td>";
 	}
   ?>
 	</table>
