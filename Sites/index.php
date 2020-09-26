@@ -48,6 +48,22 @@
   <br>
   <br>
 
+  <h3 align="center"> ¿Quieres buscar el puerto con más atraques en un mes?</h3>
+
+  <form align="center" action="consultas/consulta_puerto_mes.php" method="post">
+    Mes:
+    <input type="text" name="nombre_puerto">
+    <br/>
+    Año:
+    <input type="text" name="nombre_barco">
+    <br/><br/>
+    <input type="submit" value="Buscar">
+  </form>
+
+  <br>
+  <br>
+  <br>
+
   <h3 align="center">¿Quieres ver todos los puertos y sus ciudades?</h3>
 
   <form align="center" action="consultas/consulta_puerto.php" method="post">
