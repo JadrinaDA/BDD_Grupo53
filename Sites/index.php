@@ -64,6 +64,16 @@
   <button type="submit" class="btn btn-primary">Buscar</button>
   </form>
 
+  <br>
+  <br>
+  <br>
+
+  <h3 align="center">¿Quieres ver la edad promedio de los trabajadores de los puertos?</h3>
+
+  <form align="center" action="consultas/consulta_personal_edad.php" method="post">
+  <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+
 </body>
 
 </table>
