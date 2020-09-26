@@ -52,10 +52,10 @@
 
   <form align="center" action="consultas/consulta_puerto_mes.php" method="post">
     Mes:
-    <input type="text" name="nombre_puerto">
+    <input type="text" name="mes">
     <br/>
     Año:
-    <input type="text" name="nombre_barco">
+    <input type="text" name="year">
     <br/><br/>
     <input type="submit" value="Buscar">
   </form>
