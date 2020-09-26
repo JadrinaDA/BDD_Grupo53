@@ -9,6 +9,7 @@
 	$mes = $_POST["mes"];
   $mes = strtolower($mes);
   $year = $_POST["year"];
+  echo "'$year-$mes-01";
 
   $meses = array("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"); 
   for($n = 0; $n < 12; $n++){ 
