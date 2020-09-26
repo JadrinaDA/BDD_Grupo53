@@ -18,7 +18,7 @@
   } 
   if (is_numeric($mes)){
     if (intval($mes) < 10){
-      $mes = '0'.$mes;
+      $mes = '0'.strval(intval($mes));
       } 
   }
 
