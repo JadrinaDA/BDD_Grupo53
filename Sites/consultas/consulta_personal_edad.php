@@ -1,5 +1,8 @@
 <?php include('../header.html');   ?>
 
+<div class="header_c">
+  <h1> Edad promedio de trabajadores de un puerto </h1>
+</div>
 <body>
   
 <?php

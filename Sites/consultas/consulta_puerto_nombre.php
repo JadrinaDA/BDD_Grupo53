@@ -1,5 +1,8 @@
 <?php include('../header.html');   ?>
 
+<div class="header_c">
+  <h1> Puertos con nombres similares al input </h1>
+</div>
 <body>
 
 <?php

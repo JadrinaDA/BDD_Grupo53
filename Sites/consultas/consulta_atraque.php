@@ -1,5 +1,8 @@
 <?php include('../header.html');   ?>
 
+<div class="header_c">
+  <h1> Atraques de un barco en un puerto </h1>
+</div>
 <body>
   
 <?php

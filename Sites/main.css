@@ -33,3 +33,11 @@ table {
     margin-right:auto;
     background-color: white;
   }
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #660066;
+  color: white;
+  font-size: 20px;
+}
