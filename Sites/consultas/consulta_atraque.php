@@ -1,6 +1,7 @@
 <?php include('../header.html');   ?>
 
 <div class="header_c">
+  <img src = "https://i.imgur.com/d3H5Zih.jpeg" style="width:250px" align="left";>
   <h1> Atraques de un barco en un puerto </h1>
 </div>
 <body>
