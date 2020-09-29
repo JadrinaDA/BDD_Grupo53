@@ -1,7 +1,7 @@
 <?php include('../header.html');   ?>
 
 <div class="header_c">
-  <img src = "https://i.imgur.com/GVtkC5A.jpg" style="width:250px" align="left";>
+  <img src = "https://i.imgur.com/GVtkC5A.jpg" style="width:250px; float: left;">
   <h1> Puerto con más atraques en ese periodo </h1>
 </div>
 <body>

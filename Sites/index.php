@@ -1,5 +1,5 @@
 <?php include('header.html');   ?>
-<head><img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:250px" align="left";></head>
+<head><img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:350px" align="left";></head>
 
 <body>
   <h1 align="center">Biblioteca Naviera </h1>
