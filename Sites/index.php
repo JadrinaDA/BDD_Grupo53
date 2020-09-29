@@ -1,5 +1,4 @@
 <?php include('header.html');   ?>
-<head><img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:350px" align="left";></head>
 
 <body>
   <h1 align="center">Biblioteca Naviera </h1>
@@ -33,7 +32,7 @@
   <br>
   <br>
 
-  <h3 align="center"> ¿Quieres buscar a las veces que un barco a atracado en un puerto?</h3>
+  <h3 align="center"> ¿Quieres buscar las veces que un barco a atracado en un puerto?</h3>
 
   <form align="center" action="consultas/consulta_atraque.php" method="post">
     Nombre Puerto:
