@@ -1,5 +1,6 @@
 <?php include('header.html');   ?>
-<iframe src="https://drive.google.com/file/d/1dMAG0cAD-_P6PvPj3TR3Mjf3Zao8q6EM/preview" width="640" height="480"></iframe>
+<img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:250px" align="left";>
+
 <body>
   <h1 align="center">Biblioteca Naviera </h1>
   <p style="text-align:center;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
