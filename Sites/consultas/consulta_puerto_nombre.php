@@ -1,6 +1,7 @@
 <?php include('../header.html');   ?>
 
 <div class="header_c">
+   <img src = "https://i.imgur.com/SdXuEbu.jpeg" style="width:250px" align="left";>
   <h1> Puertos con nombres similares al input </h1>
 </div>
 <body>
