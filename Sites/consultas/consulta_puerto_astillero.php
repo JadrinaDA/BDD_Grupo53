@@ -1,7 +1,7 @@
 <?php include('../header.html');   ?>
 
 <div class="header_c">
-  <img src = "https://imgur.com/iIv8gn3" style="width:250px" align="left";>
+  <img src = "https://i.imgur.com/iIv8gn3.jpeg" style="width:250px" align="left";>
   <h1> Puertos con astilleros</h1>
 </div>
 <body>
