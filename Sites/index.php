@@ -5,7 +5,7 @@
 <body>
   <h1 align="center">Biblioteca Naviera </h1>
   <p style="text-align:center;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
-  <p style="text-align:center;">Administración: Jadrina De Andrade e Ignacion Medel</p>
+  <p style="text-align:center;">Administración: Jadrina De Andrade e Ignacio Medel</p>
 
   <br>
   <br>
