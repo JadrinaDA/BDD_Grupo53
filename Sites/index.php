@@ -2,9 +2,14 @@
 
 <img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:350px;" align="left">
 <body>
-  <h1 style = "margin-left: 400px;">Biblioteca Naviera </h1>
-  <p style = "margin-left: 800px;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
+  <h1 style = "margin-left: 300px;">Biblioteca Naviera </h1>
+  <p style = "margin-left: 560px;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <br>
   <br>
   <br>
