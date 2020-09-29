@@ -1,6 +1,7 @@
 <?php include('../header.html');   ?>
 
 <div class="header_c">
+  <img src = "https://live.staticflickr.com/277/18444588586_10198c34a1_b.jpg" style="width:250px;">
   <h1> Todos los puertos y sus ciudades </h1>
 </div>
 

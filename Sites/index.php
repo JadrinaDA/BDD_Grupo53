@@ -1,5 +1,5 @@
 <?php include('header.html');   ?>
-
+<img src = "https://live.staticflickr.com/277/18444588586_10198c34a1_b.jpg" style="width:250px;">
 <body>
   <h1 align="center">Biblioteca Naviera </h1>
   <p style="text-align:center;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
