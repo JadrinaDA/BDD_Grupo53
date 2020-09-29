@@ -1,9 +1,14 @@
 <?php include('header.html');   ?>
 
+<img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:350px;" align="left">
 <body>
-  <h1 align="center">Biblioteca Naviera </h1>
-  <p style="text-align:center;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
+  <h1 style = "margin-left: 650px;">Biblioteca Naviera </h1>
+  <p style = "margin-left: 650px;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
 
+  <br>
+  <br>
+  <br>
+  <br>
   <br>
 
   <h3 align="center"> ¿Quieres buscar un puerto por su nombre?</h3>
