@@ -2,7 +2,8 @@
 
 
 <div class="header_c">
-  <h1> Personal de un puerto </h1>
+  <img src = "https://img.memecdn.com/yes-boss_o_7256042.webp" style="width:250px" align="left";>
+  <h1> Jefes de un puerto</h1>
 </div>
 <body>
   

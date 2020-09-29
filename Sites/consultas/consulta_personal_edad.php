@@ -1,6 +1,7 @@
 <?php include('../header.html');   ?>
 
 <div class="header_c">
+  <img src = "https://i.imgur.com/Bxaw8A0.jpeg" style="width:250px" align="left";>
   <h1> Edad promedio de trabajadores de un puerto </h1>
 </div>
 <body>
