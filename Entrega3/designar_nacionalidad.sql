@@ -4,7 +4,7 @@ AS $$
 DECLARE
 BEGIN
 CREATE TABLE tabla_aux(nacionalidad VARCHAR);
-RETURN SELECT * FROM (SELECT * FROM personal,jefes WHERE personal.rut=jefes.rut) CROSS JOIN tabla_aux;
+RETURN QUERY EXECUTE 'SELECT * FROM (SELECT * FROM personal,jefes WHERE personal.rut=jefes.rut) CROSS JOIN tabla_aux';
 DROP TABLE tabla_aux;
 END;
 $$ language plpgsql
