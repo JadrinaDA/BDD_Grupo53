@@ -98,16 +98,6 @@
   <button type="submit" class="btn btn-primary">Buscar</button>
   </form>
 
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center">Test</h3>
-
-  <form align="center" action="consultas/test.php" method="post">
-  <button type="submit" class="btn btn-primary">Buscar</button>
-  </form>
-
 </body>
 
 </table>

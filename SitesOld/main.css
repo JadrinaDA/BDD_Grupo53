@@ -1,0 +1,46 @@
+p {
+		color: purple;
+	}
+	.superparrafo {  
+		font-size: 50px;
+		font-family: 'Yanone Kaffeesatz', sans-serif;
+	}
+
+body{
+	background-color: rgba(0, 0, 0, 0.25); 
+	font-family: 'Quicksand', sans-serif;
+}
+
+p:hover {
+	color: black;
+}
+
+h1 {
+	text-align: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th {
+  background-color: purple;
+  color: white;
+}
+
+table {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    min-width: 400px;
+    margin-left:600px; 
+    margin-right:auto;
+    background-color: white;
+  }
+
+.header_c {
+  padding: 60px;
+  text-align: center;
+  background: #660066;
+  color: white;
+  font-size: 20px;
+}
