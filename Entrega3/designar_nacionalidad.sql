@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION nacionalizar()
-RETURNS TABLE (rut VARCHAR, nombre VARCHAR, edad INT, sexo VARCHAR, iid INT, nacionalidad VARCHAR) 
+RETURNS TABLE (rut CHAR(12), nombre VARCHAR(100), edad INTEGER, sexo CHAR(1), iid INTEGER, nacionalidad VARCHAR) 
 AS $$
 DECLARE
 BEGIN
