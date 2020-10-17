@@ -9,7 +9,7 @@
 <?php
   require("../config/conexion.php");
 
-  $query_string = "SELECT * FROM Navieras";
+  $query_string = "SELECT * FROM navieras";
   $query = $db_buques -> prepare($query_string);
   $query -> execute();
   $result = $query -> fetchAll();
