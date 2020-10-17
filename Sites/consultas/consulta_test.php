@@ -9,8 +9,8 @@
 <?php
   require("../config/conexion.php");
 
-  $query_string = "SELECT * FROM navieras";
-  $query = $db_buques -> prepare($query_string);
+  $query_string = "SELECT nacionalizar()";
+  $query = $db_puertos -> prepare($query_string);
   $query -> execute();
   $result = $query -> fetchAll();
 ?>
@@ -21,6 +21,9 @@
     <th>Nombre</th>
     <th>ID País</th>
     <th>Giro</th>
+    <th>ID País</th>
+    <th>Giro</th>
+
   </tr>
   
   <?php
