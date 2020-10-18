@@ -3,7 +3,7 @@ RETURNS bool
 AS $$
 DECLARE
 tupla INTEGER;
-BEGIN;
+BEGIN
 tupla := (SELECT COUNT(*) FROM Personal WHERE Personal.pasaporte = pasaporte_rut USING pasaporte_rut);
 IF tupla != 0 THEN RETURN TRUE;
 ELSE RETURN FALSE; END IF;
