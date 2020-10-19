@@ -1,4 +1,3 @@
-##(nombre,edad,sexo,contraseña,nacionalidad,pasaporte_rut)
 CREATE OR REPLACE FUNCTION verificar_si_existe(pasaporte_rut VARCHAR)
 RETURNS bool 
 AS $$
