@@ -13,9 +13,9 @@
   $query_puertos = $db_puertos -> prepare($query_string_puertos);
   $query_puertos -> execute();
   $result_puerto = $query_puertos -> fetchAll();
-  $query_string_insert = "INSERT INTO Usuarios VALUES ($result_puerto[0], $result_puerto[1],
-  $result_puerto[2], $result_puerto[3], $result_puerto[4], $result_puerto[5], $result_puerto[6]);";
-  foreach ($result_puerto){
+  $query_string_insert = "INSERT INTO Usuarios VALUES ($user[0], $user[1],
+  $user[2], $user[3], $user[4], $user[5], $user[6]);";
+  foreach ($result_puerto as $user){
     $query_string_insert -> execute();
   }
   $query_string_buques = "SELECT importacion_usuario_buques()";
