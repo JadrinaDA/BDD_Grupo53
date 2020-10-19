@@ -2,12 +2,10 @@ CREATE OR REPLACE FUNCTION imoprtar_usuarios()
 RETURNS VOID AS $$
 DECLARE
 tupla RECORD;
-lista TEXT ARRAY;
 BEGIN
 FOR tupla IN SELECT * FROM personal,jefes WHERE personal.rut = jefes.rut
 LOOP
-lista := ARRAY(tupla);
-INSERT INTO intento_1 VALUES(lista[2],lista[1]);
+INSERT INTO intento_1 VALUES((tupla).nombre,(tupla).rut);
 END LOOP;
 END;
-$$ language plpgsql \
+$$ language plpgsql 
