@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION imoprtar_usuarios()
-RETURN void AS $$
+RETURNS VOID AS $$
 DECLARE
 tupla RECORD;
 lista ARRAY;
@@ -10,4 +10,4 @@ lista := ARRAY(tupla);
 INSERT INTO intento_1 VALUES(lista[2],lista[1]);
 END LOOP;
 END;
-$$ language plpgsql
+$$ language plpgsql \
