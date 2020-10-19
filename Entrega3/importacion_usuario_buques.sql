@@ -6,7 +6,7 @@ contador INTEGER;
 sexo VARCHAR;
 clave VARCHAR;
 BEGIN
-clave := 'apple369'
+clave := 'apple369';
 contador := SELECT COUNT(Usuarios.uid) FROM Usuarios;
 contador := contador + 1;
 FOR tupla_14 IN SELECT * FROM personal WHERE es_capitan = 't'

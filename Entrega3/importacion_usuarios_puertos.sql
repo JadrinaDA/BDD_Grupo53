@@ -6,7 +6,7 @@ contador INTEGER;
 nacionalidad VARCHAR;
 clave VARCHAR;
 BEGIN
-clave := 'apple369'
+clave := 'apple369';
 contador := 0;
 nacionalidad := 'CHILENA';
 FOR tupla_53 IN SELECT * FROM personal,jefes WHERE personal.rut = jefes.rut
