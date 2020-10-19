@@ -8,7 +8,7 @@ sexo VARCHAR;
 nacionalidad VARCHAR;
 BEGIN
 contador := 0;
-nacionalidad := "CHILENA";
+nacionalidad := 'CHILENA';
 FOR tupla_53 IN SELECT * FROM personal,jefes WHERE personal.rut = jefes.rut
 LOOP
 INSERT INTO usuarios VALUES(contador,tupla_53.nombre,tupla_53.edad,tupla_53.sexo,tupla_53.rut,nacionalidad,aleatorio());
