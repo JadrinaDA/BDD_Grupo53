@@ -22,7 +22,7 @@
   $query_buques = $db_buques -> prepare($query_string_buques);
   $query_buques -> execute();
   $query_strings_usuarios = "SELECT * FROM usuarios";
-  $query_usuarios -> $db_buques -> prepare($query_strings_usuarios);
+  $query_usuarios = $db_buques -> prepare($query_strings_usuarios);
   $query_usuarios -> execute();
   $result_usuarios = $query_usuarios -> fetchAll();
 ?>
