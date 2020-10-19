@@ -9,7 +9,7 @@
 <?php
   require("../config/conexion.php");
 
-  $query_string = "SELECT nacionalizar()";
+  $query_string = "SELECT importacion_usuario()";
   $query = $db_puertos -> prepare($query_string);
   $query -> execute();
   $result = $query -> fetchAll();

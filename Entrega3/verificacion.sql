@@ -4,7 +4,7 @@ AS $$
 DECLARE
 tupla INTEGER;
 BEGIN
-tupla := (SELECT COUNT(*) FROM Personal WHERE Personal.rut = pasaporte_rut);
+tupla := (SELECT COUNT(*) FROM Usuarios WHERE Usuarios.pasaporte = pasaporte_rut);
 IF tupla != 0 THEN RETURN TRUE;
 ELSE RETURN FALSE; END IF;
 END;
