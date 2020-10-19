@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION imoprtar_usuarios()
 RETURNS VOID AS $$
 DECLARE
 tupla RECORD;
-lista ARRAY;
+lista TEXT ARRAY;
 BEGIN
 FOR tupla IN SELECT * FROM personal,jefes WHERE personal.rut = jefes.rut
 LOOP
