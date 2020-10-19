@@ -5,7 +5,7 @@ tupla RECORD;
 BEGIN
 FOR tupla IN SELECT * FROM personal,jefes WHERE personal.rut = jefes.rut
 LOOP
-INSERT INTO intento_1 VALUES((tupla.item).nombre,(tupla.item).rut);
+INSERT INTO intento_1 VALUES(tupla.nombre,tupla.rut);
 END LOOP;
 END;
 $$ language plpgsql 
