@@ -16,7 +16,7 @@
   $query_string_insert = "INSERT INTO Usuarios VALUES ($result_puerto[0], $result_puerto[1].
   result_puerto[2], $result_puerto[3], result_puerto[4], $result_puerto[5], $result_puerto[6])"
   foreach ($result_puerto as  $user){
-
+    $query_string_insert -> execute()
   }
   $query_string_buques = "SELECT importacion_usuario_buques()";
   $query_buques = $db_buques -> prepare($query_string_buques);
