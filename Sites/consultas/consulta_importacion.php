@@ -18,6 +18,7 @@
   foreach ($result_puerto as $r){
     $new_r = substr($r[0], 1, -1);
     $user = explode(",", $new_r);
+    print_r($user);
     $query_insert = $db_buques -> prepare($query_string_insert);
     $query_insert -> execute();
   }
