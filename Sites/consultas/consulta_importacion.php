@@ -41,7 +41,7 @@
       <th>Password</th>
     </tr>
   <?php
-  foreach ($result_usuarios $usuario) {
+  foreach ($result_usuarios as $usuario) {
       echo "<tr> <td>$usuario[0]</td> <td>$usuario[1]</td> <td>$usuario[2]</td> <td>$usuario[3]</td> <td>$usuario[4]</td> <td>$usuario[5]</td> <td>$usuario[6]</td></tr>";
   }
   ?>
