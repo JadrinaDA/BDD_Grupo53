@@ -9,7 +9,7 @@
 <?php
   require("../config/conexion.php");
 
-  $query_string_puertos = "SELECT importacion_usuario_puertos()";
+  $query_string_puertos = "SELECT importacion_usuario_puertos();";
   $query_puertos = $db_puertos -> prepare($query_string_puertos);
   $query_puertos -> execute();
   $result_puerto = $query_puertos -> fetchAll();
