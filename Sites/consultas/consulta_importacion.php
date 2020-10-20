@@ -13,8 +13,8 @@
   $query_puertos = $db_puertos -> prepare($query_string_puertos);
   $query_puertos -> execute();
   $result_puerto = $query_puertos -> fetchAll();
-  $query_string_insert = "INSERT INTO Usuarios VALUES ($user[0], $user[1],
-  $user[2], $user[3], $user[4], $user[5], $user[6]);";
+  $query_string_insert = "INSERT INTO Usuarios VALUES ('$user[0]', '$user[1]',
+  '$user[2]', '$user[3]', '$user[4]', '$user[5]', '$user[6]');";
   foreach ($result_puerto as $user){
     $query_string_insert -> execute();
   }
