@@ -19,13 +19,13 @@
   foreach ($result_puerto as $r){
     $new_r = substr($r[0], 1, -1);
     $user = explode(",", $new_r);
-    $query_insert -> bindValue(':user[0]', $user[0]);
-    $query_insert -> bindValue(':user[1]', $user[1]);
-    $query_insert -> bindValue(':user[2]', $user[2]);
-    $query_insert -> bindValue(':user[3]', $user[3]);
-    $query_insert -> bindValue(':user[4]', $user[4]);
-    $query_insert -> bindValue(':user[5]', $user[5]);
-    $query_insert -> bindValue(':user[6]', $user[6]);
+    $query_insert -> bindValue(':user[0]', $user[0], PDO::PARAM_INT);
+    $query_insert -> bindValue(':user[1]', $user[1], PDO::PARAM_STR);
+    $query_insert -> bindValue(':user[2]', $user[2], PDO::PARAM_INT);
+    $query_insert -> bindValue(':user[3]', $user[3], PDO::PARAM_STR);
+    $query_insert -> bindValue(':user[4]', $user[4], PDO::PARAM_STR);
+    $query_insert -> bindValue(':user[5]', $user[5], PDO::PARAM_STR);
+    $query_insert -> bindValue(':user[6]', $user[6], PDO::PARAM_STR);
     $query_insert -> execute();
   }
   $query_string_buques = "SELECT importar_usuarios_buques();";
