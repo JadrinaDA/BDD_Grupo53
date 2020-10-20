@@ -19,7 +19,7 @@
   foreach ($result_puerto as $user){
     $query_insert -> execute();
   }*/
-  $query_string_buques = "SELECT importacion_usuarios_buques();";
+  $query_string_buques = "SELECT importar_usuarios_buques();";
   $query_buques = $db_buques -> prepare($query_string_buques);
   $query_buques -> execute();
   $query_strings_usuarios = "SELECT * FROM usuarios;";
