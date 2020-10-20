@@ -18,10 +18,10 @@
   foreach ($result_puerto as $user){
     $query_string_insert -> execute();
   }
-  $query_string_buques = "SELECT importacion_usuario_buques()";
+  $query_string_buques = "SELECT importacion_usuario_buques();";
   $query_buques = $db_buques -> prepare($query_string_buques);
   $query_buques -> execute();
-  $query_strings_usuarios = "SELECT * FROM usuarios";
+  $query_strings_usuarios = "SELECT * FROM usuarios;";
   $query_usuarios = $db_buques -> prepare($query_strings_usuarios);
   $query_usuarios -> execute();
   $result_usuarios = $query_usuarios -> fetchAll();
