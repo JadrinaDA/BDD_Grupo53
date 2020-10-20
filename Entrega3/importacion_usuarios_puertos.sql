@@ -16,7 +16,7 @@ LOOP
 INSERT INTO tabla_auxiliar VALUES(contador,tupla_53.nombre,tupla_53.edad,tupla_53.sexo,tupla_53.rut,nacionalidad,clave);
 contador := contador + 1;
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar';
+RETURN QUERY SELECT * FROM tabla_auxiliar;
 DROP TABLE tabla_auxiliar;
 END;
 $$ language plpgsql 
