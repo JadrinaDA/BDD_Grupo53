@@ -17,7 +17,7 @@
   $user[2], $user[3], $user[4], $user[5], $user[6]);";
   foreach ($result_puerto as $r){
     $new_r = substr($r[0], 1, -1);
-    $user = preg_split(",", $new_r);
+    $user = explode(",", $new_r);
     $query_insert = $db_buques -> prepare($query_string_insert);
     $query_insert -> execute();
   }
