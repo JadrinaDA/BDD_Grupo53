@@ -17,7 +17,7 @@
   $user[2], $user[3], $user[4], $user[5], $user[6]);";
   foreach ($result_puerto as $r){
     $new_r = $r[1:-1];
-    $user = split("," $new_r)
+    $user = split("," $new_r);
     $query_insert = $db_buques -> prepare($query_string_insert);
     $query_insert -> execute();
   }
@@ -41,7 +41,7 @@
       <th>Password</th>
     </tr>
   <?php
-  foreach ($result_puerto as $usuario) {
+  foreach ($result_usuarios $usuario) {
       echo "<tr> <td>$usuario[0]</td> <td>$usuario[1]</td> <td>$usuario[2]</td> <td>$usuario[3]</td> <td>$usuario[4]</td> <td>$usuario[5]</td> <td>$usuario[6]</td></tr>";
   }
   ?>
