@@ -13,12 +13,19 @@
   $query_puertos = $db_puertos -> prepare($query_string_puertos);
   $query_puertos -> execute();
   $result_puerto = $query_puertos -> fetchAll();
+  $query_string_insert = "INSERT INTO usuarios VALUES(:user[0], :user[1],
+  :user[2], :user[3], :user[4], :user[5], :user[6]);";
+  $query_insert = $db_buques -> prepare($query_string_insert);
   foreach ($result_puerto as $r){
     $new_r = substr($r[0], 1, -1);
     $user = explode(",", $new_r);
-    $query_string_insert = "INSERT INTO usuarios VALUES($user[0], $user[1],
-  $user[2], $user[3], $user[4], $user[5], $user[6]);";
-    $query_insert = $db_buques -> prepare($query_string_insert);
+    $query_insert -> bindValue(':user[0]', $user[0]);
+    $query_insert -> bindValue(':user[1]', $user[1]);
+    $query_insert -> bindValue(':user[2]', $user[2]);
+    $query_insert -> bindValue(':user[3]', $user[3]);
+    $query_insert -> bindValue(':user[4]', $user[4]);
+    $query_insert -> bindValue(':user[5]', $user[5]);
+    $query_insert -> bindValue(':user[6]', $user[6]);
     $query_insert -> execute();
   }
   $query_string_buques = "SELECT importar_usuarios_buques();";
