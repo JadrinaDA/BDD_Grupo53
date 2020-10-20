@@ -9,7 +9,7 @@
 <?php
   require("../config/conexion.php");
 
-  $query_string_puertos = "SELECT importacion_usuario_puertos();";
+  /*$query_string_puertos = "SELECT importacion_usuario_puertos();";
   $query_puertos = $db_puertos -> prepare($query_string_puertos);
   $query_puertos -> execute();
   $result_puerto = $query_puertos -> fetchAll();
@@ -18,7 +18,7 @@
   $query_insert = $db_buques -> prepare($query_string_insert);
   foreach ($result_puerto as $user){
     $query_insert -> execute();
-  }
+  }*/
   $query_string_buques = "SELECT importacion_usuario_buques();";
   $query_buques = $db_buques -> prepare($query_string_buques);
   $query_buques -> execute();
