@@ -4,21 +4,26 @@ AS $$
 DECLARE
 tupla_muelle RECORD;
 tupla_asti RECORD;
+tupla_inst RECORD;
 capacidad_max INT;
 atracados INT;
 BEGIN
 CREATE TABLE table_cap(iid INT, tiene_capacidad bool);
-SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque INTO table_moors FROM ((SELECT atraques.pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
+CREATE TABLE table_moors(pid INT, iid INT, capacidad INT, fecha_atraque DATE);
+FOR tupla_ muelle IN SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT atraques.pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
  INNER JOIN atraques ON instalaciones.iid = atraques.iid WHERE instalaciones.tipo = 'muelle') AS insts INNER JOIN permisos ON insts.pid = permisos.pid)
-atracados := 0;
-FOR tupla_muelle IN instalaciones
 LOOP
-IF tupla_muelle.fecha_atraque = fecha_start
+INSERT INTO tabla_moors VALUES(tupla_muelle.pid, tupla_muelle.iid, tupla_muelle.capacidad, tupla_muelle.fecha_atraque);
+END LOOP;
+atracados := 0;
+FOR tupla_inst IN instalaciones
+LOOP
+IF tupla_inst.fecha_atraque = fecha_start
 THEN 
-atracados := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid == tupla_muelle.iid);
+atracados := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid == tupla_inst.iid);
 END IF;
-capacidad_max := tupla_muelle.capacidad;
-INSERT INTO table_cap VALUES(tupla_muelle.iid, atracados < capacidad_max);
+capacidad_max := tupla_inst.capacidad;
+INSERT INTO table_cap VALUES(tupla_inst.iid, atracados < capacidad_max);
 END LOOP;
 DROP TABLE table_moors;
 /*atracados := 0;
