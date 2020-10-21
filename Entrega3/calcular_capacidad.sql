@@ -18,7 +18,7 @@ END LOOP;
 atracados := 0;
 FOR tupla_inst IN SELECT * FROM instalaciones
 LOOP
-atracados := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid == tupla_inst.iid);
+atracados := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid = tupla_inst.iid);
 capacidad_max := tupla_inst.capacidad;
 INSERT INTO table_cap VALUES(tupla_inst.iid, atracados < capacidad_max);
 END LOOP;
