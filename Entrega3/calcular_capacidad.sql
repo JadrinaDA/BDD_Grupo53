@@ -15,9 +15,9 @@ LOOP
 IF tupla_muelle.fecha_atraque >= fecha_start AND tupla_muelle.fecha_atraque <= fecha_end
 THEN 
 atracados := atracados + 1;
+END IF;
 capacidad_max := tupla_muelle.capacidad;
 INSERT INTO table_cap VALUES(tupla_muelle.iid, atracados < capacidad_max);
-END IF;
 END LOOP;
 atracados := 0;
 FOR tupla_asti IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
@@ -26,9 +26,9 @@ LOOP
 IF tupla_asti.fecha_atraque >= fecha_start AND tupla_asti.fecha_atraque <= fecha_end
 THEN 
 atracados := atracados + 1;
+END IF;
 capacidad_max := tupla_asti.capacidad;
 INSERT INTO table_cap VALUES(tupla_asti.iid, atracados < capacidad_max);
-END IF;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM table_cap';
 DROP TABLE table_cap;
