@@ -23,7 +23,7 @@ atracados := 0;
 FOR tupla_asti IN SELECT permisos_astillero.pid, iid, capacidad, fecha_atraque, fecha_salida FROM ((SELECT permisos.pid, iid, capacidad, fecha_atraque FROM ((SELECT pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
  INNER JOIN atraques ON instalaciones.iid = atraques.iid WHERE instalaciones.tipo = 'astillero') AS insts INNER JOIN permisos ON insts.pid = permisos.pid)) as astis INNER JOIN permisos_astillero ON astis.pid = permisos_astillero.pid)
 LOOP
-IF tupla_asti.fecha_atraque >= fecha_start AND tupla_muelle.fecha_salida <= fecha_salida;
+IF tupla_asti.fecha_atraque >= fecha_start AND tupla_muelle.fecha_salida <= fecha_salida
 THEN 
 atracados := atracados + 1;
 capacidad_max := tupla_asti.capacidad;
