@@ -16,7 +16,7 @@ LOOP
 INSERT INTO tabla_moors VALUES(tupla_muelle.pid, tupla_muelle.iid, tupla_muelle.capacidad, tupla_muelle.fecha_atraque);
 END LOOP;
 atracados := 0;
-FOR tupla_inst IN instalaciones
+FOR tupla_inst IN SELECT * instalaciones
 LOOP
 IF tupla_inst.fecha_atraque = fecha_start
 THEN 
