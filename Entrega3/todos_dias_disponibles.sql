@@ -51,11 +51,11 @@ cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_s
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros; --date '2001-10-01' - date '2001-09-28' = integer '3' (days)
 -- notar que los dias ocupados seria el 28,29,30 y el 1, son 4 dias y no 3. UPDATE, pero el 1 se va, me lo deja disponible, son 3.
 LOOP
-EXIT WHEN cantidad_de_dias_ocupados_astilleros = 0;
 fecha_auxiliar := tupla_permisos_permisos_atraques.fecha_salida - cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
 INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
+EXIT WHEN cantidad_de_dias_ocupados_astilleros = 0;
 END LOOP;
 -- SEGUNDO CASO ASTILLEROS, LA FECHA DE ATRAQUE ESTA DENTRO DEL INTERVALO PERO LA FECHA DE SALIDA NO
 ELSEIF tupla_permisos_permisos_atraques.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_atraque <= fecha_salida AND discriminante
@@ -66,7 +66,6 @@ cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_oc
 -- notar que los dias ocupados seria el 28,29,30 y el 1. UPDATE supongamos que el 29 es la fecha_termino y la
 -- fecha_atraque es el 28, la diferencia es 1, pero ambos dias estarian dentro de mi intervalo, siendo uno mas.
 LOOP
-EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1; 
 --date '2001-10-01' - date '2001-09-28' = integer '3' (days), pero supongamos
 --que el 29 es la fecha_termino y la fecha_inicio es el 28, la diferencia es 1, entonces al restarle al 29 uno queda 28, guardo
 --esa fecha, pero no guardaria la del 29 que tambien estaria incluida, por eso el loop debe recorrer el valor de 0.
@@ -74,6 +73,7 @@ fecha_auxiliar := fecha_termino - cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
 INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
+EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1; 
 END LOOP;
 -- TERCER CASO ASTILLEROS, LA FECHA DE ATRAQUE NO ESTA DENTRO DEL INTERVALO PERO LA FECHA DE SALIDA SI
 ELSE
@@ -86,13 +86,12 @@ cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_oc
 -- entonces, la interseccion del intervalo seria 28 y 29. fecha de salida seria el 29 y la fecha de inicio el 28, diferencia de 1, pero los 2 dias estan incluidos en 
 -- el intervalo. por eso el loop debe recorrer el valor de 0.
 LOOP
-EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1;
 fecha_auxiliar := fecha_inicio + cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
 INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
+EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1;
 END LOOP;
-END IF;
 END IF;
 END IF;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_id_fecha';
