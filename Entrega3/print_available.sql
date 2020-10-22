@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION print_available(tipo VARCHAR, fecha_start DATE, fecha_end DATE)
+CREATE OR REPLACE FUNCTION print_available(tipo_chose VARCHAR, fecha_start DATE, fecha_end DATE)
 RETURNS TABLE(iid INT, tipo VARCHAR(100), capacidad INT) 
 AS $$
 DECLARE
@@ -9,7 +9,7 @@ FOR tupla IN SELECT calcular_capacidad(fecha_start, fecha_end)
 LOOP
 INSERT INTO tabla_aux VALUES(tupla.iid, tupla.tiene_capacidad);
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM instalaciones INNER JOIN tabla_aux ON instalaciones.iid == tabla_aux.iid WHERE instalaciones.tipo = tipo';
+RETURN QUERY EXECUTE 'SELECT * FROM instalaciones INNER JOIN tabla_aux ON instalaciones.iid == tabla_aux.iid WHERE instalaciones.tipo = tipo_chosen';
 DROP TABLE tabla_aux;
 END;
 $$ language plpgsql 
