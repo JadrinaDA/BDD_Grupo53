@@ -7,7 +7,7 @@ BEGIN
 CREATE TABLE tabla_aux(iid INT, tiene_capacidad bool);
 FOR tupla IN SELECT calcular_capacidad(fecha_start, fecha_end)
 LOOP
-INSERT INTO tabla_aux VALUES(tupla[0], tupla[1]);
+INSERT INTO tabla_aux VALUES(tupla.calcular_capacidad[0], tupla.calcular_capacidad[1]);
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM instalaciones INNER JOIN tabla_aux ON instalaciones.iid == tabla_aux.iid WHERE instalaciones.tipo = tipo_chosen';
 DROP TABLE tabla_aux;
