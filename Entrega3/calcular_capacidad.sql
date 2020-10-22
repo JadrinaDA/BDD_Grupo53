@@ -32,7 +32,7 @@ LOOP
 INSERT INTO table_yards VALUES(tupla_asti.pid, tupla_asti.iid, tupla_asti.capacidad, tupla_asti.fecha_atraque);
 END LOOP;
 atracados := 0;
-dias_int := fecha_salida - fecha_atraque;
+dias_int := fecha_start - fecha_end;
 FOR tupla_inst IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
 LOOP
 FOR tupla_asti_2 IN SELECT * FROM table_yards WHERE iid = tupla_inst.iid
