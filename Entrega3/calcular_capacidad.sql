@@ -5,6 +5,7 @@ DECLARE
 tupla_muelle RECORD;
 tupla_asti RECORD;
 tupla_inst RECORD;
+tupla_inst_2 RECORD;
 tupla_asti_2 RECORD;
 capacidad_max INT;
 atracados INT;
@@ -33,9 +34,9 @@ INSERT INTO table_yards VALUES(tupla_asti.pid, tupla_asti.iid, tupla_asti.capaci
 END LOOP;
 atracados := 0;
 dias_int := fecha_start - fecha_end;
-FOR tupla_inst IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
+FOR tupla_inst_2 IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
 LOOP
-FOR tupla_asti_2 IN SELECT * FROM table_yards WHERE table_yards.iid = tupla_inst.iid
+FOR tupla_asti_2 IN SELECT * FROM table_yards WHERE table_yards.iid = tupla_inst_2.iid
 LOOP
 IF tupla_asti_2.fecha_atraque >= fecha_start AND tupla_asti_2.fecha_atraque <= fecha_end
 THEN 
@@ -51,8 +52,8 @@ atracados := atracados + (tupla_asti_2.fecha_salida - fecha_start);
 END IF;
 END LOOP;
 DROP TABLE table_yards;
-capacidad_max := tupla_inst.capacidad;
-INSERT INTO table_cap VALUES(tupla_inst.iid, atracados < (capacidad_max * dias_int));
+capacidad_max := tupla_inst_2.capacidad;
+INSERT INTO table_cap VALUES(tupla_inst_2.iid, atracados < (capacidad_max * dias_int));
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM table_cap';
 DROP TABLE table_cap;
