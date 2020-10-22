@@ -35,7 +35,7 @@ atracados := 0;
 dias_int := fecha_start - fecha_end;
 FOR tupla_inst IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
 LOOP
-FOR tupla_asti_2 IN SELECT * FROM table_yards WHERE iid = tupla_inst.iid
+FOR tupla_asti_2 IN SELECT * FROM table_yards WHERE table_yards.iid = tupla_inst.iid
 LOOP
 IF tupla_asti_2.fecha_atraque >= fecha_start AND tupla_asti_2.fecha_atraque <= fecha_end
 THEN 
