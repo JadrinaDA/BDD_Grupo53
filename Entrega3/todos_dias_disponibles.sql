@@ -93,7 +93,6 @@ INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
 END LOOP;
 END IF;
-END IF;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_id_fecha';
 DROP TABLE tabla_auxiliar_id_fecha;
 END;
