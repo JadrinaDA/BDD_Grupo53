@@ -21,7 +21,7 @@
     </tr>
   <?php
   foreach ($result_puerto as $inst) {
-      echo "<tr> <td>$usuario[0]</td></tr>";
+      echo "<tr> <td>$inst[0]</td></tr>";
   }
   ?>
   </table>
