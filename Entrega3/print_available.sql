@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION calcular_capacidad(tipo VARCHAR, fecha_start DATE, fecha_end DATE)
+CREATE OR REPLACE FUNCTION print_available(tipo VARCHAR, fecha_start DATE, fecha_end DATE)
 RETURNS TABLE(iid INT, tipo VARCHAR(100), capacidad INT) 
 AS $$
 DECLARE
