@@ -105,7 +105,19 @@
   <h3 align="center">Test</h3>
 
   <form align="center" action="consultas/consulta_capacidad.php" method="post">
-  <button type="submit" class="btn btn-primary">Buscar</button>
+    Tipo:
+    <input type="text" name="tipo">
+    <br/>
+    Dia 1:
+    <input type="text" name="start">
+    <br/>
+    Dia 2:
+    <input type="text" name="end">
+    <br/>
+    Patente:
+    <input type="text" name="patente">
+    <br/><br/>
+    <input type="submit" value="Buscar">
   </form>
 
 </body>

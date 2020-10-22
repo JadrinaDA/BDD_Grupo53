@@ -9,9 +9,14 @@
 <?php
   require("../config/conexion.php");
 
-  $query_string_puertos = " SELECT calcular_capacidad('2018-02-20', '2018-06-20');";
-  $query_puertos = $db_puertos -> prepare($query_string_puertos);
-  $query_puertos -> execute();
+  $tipo = $_POST["tipo"];
+  $start = $_POST["start"];
+  $end = $_POST["end"];
+  $patente = $_POST["patente"]
+
+  $query_string_all = "SELECT calcular_capacidad($start, $end);";
+  $query_all= $db_puertos -> prepare($query_string_all);
+  $query_all -> execute();
   $result_puerto = $query_puertos -> fetchAll();
 ?>
 
