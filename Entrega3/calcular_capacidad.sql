@@ -26,17 +26,12 @@ capacidad_max := tupla_inst.capacidad;
 INSERT INTO table_cap VALUES(tupla_inst.iid, atracados < capacidad_max);
 END LOOP;
 DROP TABLE table_moors;
-CREATE TABLE table_yards(pid INT, iid INT, capacidad INT, fecha_atraque DATE, fecha_salida DATE);
-FOR tupla_asti IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
- INNER JOIN atraques ON instalaciones.iid = atraques.iid WHERE instalaciones.tipo = 'astillero') AS insts INNER JOIN permisos ON insts.pid = permisos.pid)) as astis INNER JOIN permisos_astillero ON astis.pid = permisos_astillero.pid)
-LOOP
-INSERT INTO table_yards VALUES(tupla_asti.pid, tupla_asti.iid, tupla_asti.capacidad, tupla_asti.fecha_atraque);
-END LOOP;
 atracados := 0;
 dias_int := fecha_start - fecha_end;
 FOR tupla_inst_2 IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
 LOOP
-FOR tupla_asti_2 IN SELECT * FROM table_yards WHERE table_yards.iid = tupla_inst_2.iid
+FOR tupla_asti_2 IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
+ INNER JOIN atraques ON instalaciones.iid = atraques.iid WHERE instalaciones.tipo = 'astillero') AS insts INNER JOIN permisos ON insts.pid = permisos.pid)) as astis INNER JOIN permisos_astillero ON astis.pid = permisos_astillero.pid) WHERE astis.iid = tupla_inst_2.iid
 LOOP
 IF tupla_asti_2.fecha_atraque >= fecha_start AND tupla_asti_2.fecha_atraque <= fecha_end
 THEN 
@@ -51,7 +46,6 @@ THEN
 atracados := atracados + (tupla_asti_2.fecha_salida - fecha_start);
 END IF;
 END LOOP;
-DROP TABLE table_yards;
 capacidad_max := tupla_inst_2.capacidad;
 INSERT INTO table_cap VALUES(tupla_inst_2.iid, atracados < (capacidad_max * dias_int));
 END LOOP;
