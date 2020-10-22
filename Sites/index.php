@@ -104,7 +104,7 @@
 
   <h3 align="center">Test</h3>
 
-  <form align="center" action="consultas/consulta_importacion.php" method="post">
+  <form align="center" action="consultas/consulta_capacidad.php" method="post">
   <button type="submit" class="btn btn-primary">Buscar</button>
   </form>
 
