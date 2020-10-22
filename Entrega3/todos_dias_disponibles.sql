@@ -45,7 +45,7 @@ ELSE discriminante := FALSE;
 END IF;
 -- PRIMER CASO ASTILLEROS, AMBAS FECHAS ESTAN DENTRO DEL INTERVALO
 IF tupla_permisos_permisos_atraques.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_atraque <= fecha_termino
-AND tupla_permisos_permisos_atraques.fecha_salida >= fecha_inicio AND tupla_permisos_permisos_atraques.salida <= fecha_termino AND discriminante
+AND tupla_permisos_permisos_atraques.fecha_salida >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_salida <= fecha_termino AND discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - tupla_permisos_permisos_atraques.fecha_atraque;
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros; --date '2001-10-01' - date '2001-09-28' = integer '3' (days)
