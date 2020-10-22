@@ -27,7 +27,7 @@ cantidad_ocupada_muelles := 0;
 FOR tupla_permisos_permisos_muelle IN SELECT permisos.pid,permisos.fecha_atraque FROM permisos,permisos_muelle WHERE permisos.pid=permisos_muelle.pid
 LOOP
 -- UNICO CASO MUELLES, LA FECHA ESTA O NO DENTRO DEL INTERVALO
-IF tupla_permisos_permisos_muelle.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_muelle <= fecha_termino
+IF tupla_permisos_permisos_muelle.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_muelle.fecha_atraque <= fecha_termino
 AND tupla_instalaciones.pid = tupla_permisos_permisos_muelle.pid
 THEN 
 cantidad_ocupada_muelles := cantidad_ocupada_muelles + 1;
