@@ -61,11 +61,13 @@ END LOOP;
 ELSEIF tupla_permisos_permisos_atraques.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_atraque <= fecha_salida AND discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := fecha_termino - tupla_permisos_permisos_atraques.fecha_atraque;
-cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1; --date '2001-10-01' - date '2001-09-28' = integer '3' (days)
+cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1; 
+--date '2001-10-01' - date '2001-09-28' = integer '3' (days)
 -- notar que los dias ocupados seria el 28,29,30 y el 1. UPDATE supongamos que el 29 es la fecha_termino y la
 -- fecha_atraque es el 28, la diferencia es 1, pero ambos dias estarian dentro de mi intervalo, siendo uno mas.
 LOOP
-EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1; --date '2001-10-01' - date '2001-09-28' = integer '3' (days), pero supongamos
+EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1; 
+--date '2001-10-01' - date '2001-09-28' = integer '3' (days), pero supongamos
 --que el 29 es la fecha_termino y la fecha_inicio es el 28, la diferencia es 1, entonces al restarle al 29 uno queda 28, guardo
 --esa fecha, pero no guardaria la del 29 que tambien estaria incluida, por eso el loop debe recorrer el valor de 0.
 fecha_auxiliar := fecha_termino - cantidad_de_dias_ocupados_astilleros;
@@ -78,7 +80,8 @@ ELSE
 IF discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - fecha_inicio;
-cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1; --date '2001-10-01' - date '2001-09-28' = integer '3' (days)
+cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1; 
+--date '2001-10-01' - date '2001-09-28' = integer '3' (days)
 -- notar que los dias ocupados seria el 28,29,30 y el 1. UPDATE, pero supongamos que el intervalo es del dia 28 a 30 y yo tengo ocupado el astillero desde el 27 al 29
 -- entonces, la interseccion del intervalo seria 28 y 29. fecha de salida seria el 29 y la fecha de inicio el 28, diferencia de 1, pero los 2 dias estan incluidos en 
 -- el intervalo. por eso el loop debe recorrer el valor de 0.
