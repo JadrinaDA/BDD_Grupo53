@@ -4,7 +4,7 @@ AS $$
 DECLARE
 tupla RECORD;
 BEGIN
-CREATE TABLE tabla_aux(iid INT, tiene_capacidad bool)
+CREATE TABLE tabla_aux(iid INT, tiene_capacidad bool);
 FOR tupla IN SELECT calcular_capacidad(fecha_start, fecha_end)
 LOOP
 INSERT INTO tabla_aux VALUES(tupla.iid, tupla.tiene_capacidad);
