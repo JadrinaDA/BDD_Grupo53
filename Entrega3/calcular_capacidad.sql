@@ -49,7 +49,7 @@ END LOOP;
 capacidad_max := tupla_inst_2.capacidad;
 INSERT INTO table_cap VALUES(tupla_inst_2.iid, atracados < (capacidad_max * dias_int));
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM table_cap';
+RETURN QUERY EXECUTE 'SELECT * FROM table_cap ORDER BY iid';
 DROP TABLE table_cap;
 END;
 $$ language plpgsql 
