@@ -14,6 +14,7 @@ cantidad_ocupada_astilleros INTEGER;
 tabla_aux_id_fecha INTEGER;
 cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
+discriminante BOOL;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, fecha DATE);
 tabla_aux_id_fecha := 0;
@@ -39,11 +40,12 @@ cantidad_ocupada_astilleros := 0;
 FOR tupla_permisos_permisos_atraques IN SELECT permisos.pid,permisos.fecha_atraque,permisos_astillero.fecha_salida FROM permisos,permisos_astillero
 WHERE permisos.pid=permisos_astillero.pid
 LOOP
-IF tupla_instalaciones.pid = tupla_permisos_permisos_atraques.pid
-THEN
+IF tupla_instalaciones.pid = tupla_permisos_permisos_atraques.pid THEN discriminante := TRUE;
+ELSE discriminante := FALSE;
+END IF;
 -- PRIMER CASO ASTILLEROS, AMBAS FECHAS ESTAN DENTRO DEL INTERVALO
 IF tupla_permisos_permisos_atraques.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_atraque <= fecha_salida
-AND tupla_permisos_permisos_atraques.fecha_salida >= fecha_inicio AND tupla_permisos_permisos_atraques.salida <= fecha_salida
+AND tupla_permisos_permisos_atraques.fecha_salida >= fecha_inicio AND tupla_permisos_permisos_atraques.salida <= fecha_salida AND discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - tupla_permisos_permisos_atraques.fecha_atraque;
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros; --date '2001-10-01' - date '2001-09-28' = integer '3' (days)
@@ -56,7 +58,7 @@ INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
 END LOOP;
 -- SEGUNDO CASO ASTILLEROS, LA FECHA DE ATRAQUE ESTA DENTRO DEL INTERVALO PERO LA FECHA DE SALIDA NO
-ELSEIF tupla_permisos_permisos_atraques.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_atraque <= fecha_salida
+ELSEIF tupla_permisos_permisos_atraques.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_atraque <= fecha_salida AND discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := fecha_termino - tupla_permisos_permisos_atraques.fecha_atraque;
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1; --date '2001-10-01' - date '2001-09-28' = integer '3' (days)
@@ -73,6 +75,8 @@ tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
 END LOOP;
 -- TERCER CASO ASTILLEROS, LA FECHA DE ATRAQUE NO ESTA DENTRO DEL INTERVALO PERO LA FECHA DE SALIDA SI
 ELSE
+IF discriminante
+THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - fecha_inicio;
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1; --date '2001-10-01' - date '2001-09-28' = integer '3' (days)
 -- notar que los dias ocupados seria el 28,29,30 y el 1. UPDATE, pero supongamos que el intervalo es del dia 28 a 30 y yo tengo ocupado el astillero desde el 27 al 29
