@@ -13,7 +13,16 @@ string := CAST(tupla.calcular_capacidad AS CHAR(100));
 pos_com := POSITION(',' IN string);
 INSERT INTO tabla_aux VALUES(CAST(SUBSTRING(string , 2, pos_com - 2) AS INT), CAST(SUBSTRING(string , pos_com + 1, 1) AS bool));
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM instalaciones WHERE instalaciones.tipo = tipo_chosen AND instalaciones.iid IN (SELECT tabla_aux.iid FROM tabla_aux)';
+CREATE TABLE tabla_aux_2(iid INT, tipo VARCHAR(100), capacidad INT);
+FOR tupla IN SELECT * FROM instalaciones
+LOOP
+IF tupla.iid = tipo_chosen
+THEN
+INSERT INTO tabla_aux VALUES (tupla.iid, tupla.tipo, tipo.capacidad);
+END IF;
+END LOOP;
+RETURN QUERY EXECUTE 'SELECT * FROM tabla_aux INNER JOIN tabla_aux_2 ON tabla_aux.iid = tabla_aux_2.iid';
 DROP TABLE tabla_aux;
+DROP TABLE tabla_aux_2;
 END;
 $$ language plpgsql 
