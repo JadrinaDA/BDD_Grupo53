@@ -11,7 +11,7 @@ FOR tupla IN SELECT calcular_capacidad(fecha_start, fecha_end)
 LOOP
 string := CAST(tupla.calcular_capacidad AS CHAR(100));
 pos_com := POSITION(',' IN string);
-INSERT INTO tabla_aux VALUES(CAST(SUBSTRING(string) , 2, pos_com - 2) AS INT), CAST(SUBSTRING(string , pos_com, 1) AS bool));
+INSERT INTO tabla_aux VALUES(CAST(SUBSTRING(string , 2, pos_com - 2) AS INT), CAST(SUBSTRING(string , pos_com, 1) AS bool));
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM instalaciones INNER JOIN tabla_aux ON instalaciones.iid == tabla_aux.iid WHERE instalaciones.tipo = tipo_chosen';
 DROP TABLE tabla_aux;
