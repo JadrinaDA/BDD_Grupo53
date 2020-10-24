@@ -21,7 +21,7 @@ THEN
 INSERT INTO tabla_aux_2 VALUES (tupla.iid, tupla.tipo, tupla.capacidad);
 END IF;
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_aux INNER JOIN tabla_aux_2 ON tabla_aux.iid = tabla_aux_2.iid';
+RETURN QUERY EXECUTE 'SELECT tabla_aux_2.iid, tabla_aux_2.tipo, tabla_aux_2.capacidad FROM tabla_aux INNER JOIN tabla_aux_2 ON tabla_aux.iid = tabla_aux_2.iid';
 DROP TABLE tabla_aux;
 DROP TABLE tabla_aux_2;
 END;
