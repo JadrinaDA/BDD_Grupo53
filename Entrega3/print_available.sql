@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION print_available(tipo_chose VARCHAR, fecha_start DATE, fecha_end DATE)
-RETURNS TABLE(iid INT, tipo VARCHAR(100), capacidad INT) 
+RETURNS TABLE(textier CHAR)--iid INT, tipo VARCHAR(100), capacidad INT) 
 AS $$
 DECLARE
 tupla RECORD;
