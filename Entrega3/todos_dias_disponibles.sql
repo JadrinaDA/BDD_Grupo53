@@ -67,7 +67,7 @@ cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_s
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1;
 LOOP
 EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1;
-fecha_auxiliar_2 := fecha_inicio
+fecha_auxiliar_2 := fecha_inicio;
 fecha_auxiliar := fecha_auxiliar_2 + cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
 INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
