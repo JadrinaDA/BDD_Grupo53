@@ -63,7 +63,7 @@ ELSE
 IF discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - fecha_inicio;
-cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1;
+cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros;
 LOOP
 EXIT WHEN cantidad_de_dias_ocupados_astilleros = 0;
 fecha_auxiliar := tupla_permisos_permisos_atraques.fecha_salida - cantidad_de_dias_ocupados_astilleros;
