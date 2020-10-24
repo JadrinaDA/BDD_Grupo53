@@ -18,7 +18,7 @@ FOR tupla IN SELECT * FROM instalaciones
 LOOP
 IF tupla.tipo = tipo_chosen
 THEN
-INSERT INTO tabla_aux VALUES (tupla.iid, tupla.tipo, tipo.capacidad);
+INSERT INTO tabla_aux VALUES (tupla.iid, tupla.tipo, tupla.capacidad);
 END IF;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_aux INNER JOIN tabla_aux_2 ON tabla_aux.iid = tabla_aux_2.iid';
