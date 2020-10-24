@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(fecha_inicio DATE, fecha_termino DATE)
-RETURNS TABLE (instalacion_id INTEGER,fecha_inicio_2 DATE)
+RETURNS TABLE (instalacion_id INTEGER, fecha DATE)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
@@ -14,6 +14,7 @@ fecha_auxiliar DATE;
 discriminante BOOL;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, fecha DATE);
+fecha_auxiliar := fecha_inicio + 1;
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -64,6 +65,13 @@ IF discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - fecha_inicio;
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1;
+LOOP
+EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1;
+fecha_auxiliar := fecha_inicio + cantidad_de_dias_ocupados_astilleros;
+cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
+INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
+tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
+END LOOP; -- 10-9
 END IF;
 END IF;
 END LOOP; -- 11-4
@@ -72,3 +80,4 @@ RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_id_fecha';
 DROP TABLE tabla_auxiliar_id_fecha;
 END;
 $$ language plpgsql 
+
