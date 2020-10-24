@@ -16,7 +16,7 @@ END LOOP;
 CREATE TABLE tabla_aux_2(iid INT, tipo VARCHAR(100), capacidad INT);
 FOR tupla IN SELECT * FROM instalaciones
 LOOP
-IF tupla.iid = tipo_chosen
+IF tupla.tipo = tipo_chosen
 THEN
 INSERT INTO tabla_aux VALUES (tupla.iid, tupla.tipo, tipo.capacidad);
 END IF;
