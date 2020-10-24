@@ -13,7 +13,7 @@ string := CAST(tupla.calcular_capacidad AS CHAR(100));
 pos_com := POSITION(',' IN string);
 INSERT INTO tabla_aux VALUES(CAST(SUBSTRING(string , 2, pos_com - 2) AS INT), CAST(SUBSTRING(string , pos_com + 1, 1) AS bool));
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_aux instalaciones INNER JOIN (SELECT * FROM tabla_aux WHERE instalaciones.tipo = tipo_chosen)  ON instalaciones.iid = tabla_aux.iid';
+RETURN QUERY EXECUTE 'SELECT * FROM tabla_aux instalaciones INNER JOIN (SELECT * FROM tabla_aux WHERE instalaciones.tipo = tipo_chosen AS middle)  ON instalaciones.iid = middle.iid';
 DROP TABLE tabla_aux;
 END;
 $$ language plpgsql 
