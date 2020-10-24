@@ -11,7 +11,6 @@ cantidad_ocupada_astilleros INTEGER;
 tabla_aux_id_fecha INTEGER;
 cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
-fecha_auxiliar_2 DATE;
 discriminante BOOL;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, fecha DATE);
@@ -66,9 +65,8 @@ THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - fecha_inicio;
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1;
 LOOP
-EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1;
-fecha_auxiliar_2 := fecha_inicio;
-fecha_auxiliar := fecha_auxiliar_2 + cantidad_de_dias_ocupados_astilleros;
+EXIT WHEN cantidad_de_dias_ocupados_astilleros = 0;
+fecha_auxiliar := fecha_inicio + cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
 INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
