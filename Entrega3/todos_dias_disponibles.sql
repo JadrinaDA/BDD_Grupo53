@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(fecha_inicio DATE, fecha_termino DATE)
-RETURNS TABLE (instalacion_id INTEGER,fecha_inicio DATE, fecha_termino DATE)
+RETURNS TABLE (instalacion_id INTEGER,fecha_inicio_2 DATE, fecha_termino_2 DATE)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
