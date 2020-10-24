@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(fecha_inicio DATE, fecha_termino DATE)
-RETURNS TABLE (instalacion_id INTEGER,instalacion VARCHAR, tipo_instalacion VARCHAR,dias_no_agotados VARCHAR ,porcentaje_ocupacion VARCHAR)
+RETURNS TABLE (instalacion_id INTEGER,fecha_inicio DATE, fecha_termino DATE)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
@@ -64,12 +64,6 @@ IF discriminante
 THEN
 cantidad_de_dias_ocupados_astilleros := tupla_permisos_permisos_atraques.fecha_salida - fecha_inicio;
 cantidad_ocupada_astilleros := cantidad_ocupada_astilleros + cantidad_de_dias_ocupados_astilleros + 1;
-LOOP
-EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1;
-cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
-INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
-tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
-END LOOP; -- 10-9
 END IF;
 END IF;
 END LOOP; -- 11-4
