@@ -18,6 +18,11 @@
   $query_all= $db_puertos -> prepare($query_string_all);
   $query_all -> execute();
   $result_puerto = $query_all -> fetchAll();
+
+  $query_string_np = "SELECT new_perm('$tipo', '$start', '$end', '$patente;";
+  $query_new_perm = $db_puertos -> prepare($query_string_np);
+  $query_new_perm -> execute()
+
 ?>
 
 <table>
