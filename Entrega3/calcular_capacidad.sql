@@ -27,11 +27,11 @@ FOR tupla_inst IN SELECT * FROM instalaciones WHERE tipo = 'muelle'
 LOOP
 atracados_s := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid = tupla_inst.iid);
 capacidad_max := tupla_inst.capacidad;
-INSERT INTO table_cap VALUES(tupla_inst.iid, atracados < capacidad_max);
+INSERT INTO table_cap VALUES(tupla_inst.iid, atracados_s < capacidad_max);
 END LOOP;
 DROP TABLE table_moors;
 dias_int := fecha_start - fecha_end;
-atracados := ARRAY[dias_int];
+atracados := INT[dias_int];
 FOR tupla_inst_2 IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
 LOOP
 FOR tupla_asti_2 IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
