@@ -13,13 +13,19 @@
   $start = $_POST["start"];
   $end = $_POST["end"];
   $patente = $_POST["patente"];
+  $actividad = $_POST["actividad"];
 
   $query_string_all = "SELECT print_available('$tipo', '$start', '$end');";
   $query_all= $db_puertos -> prepare($query_string_all);
   $query_all -> execute();
   $result_puerto = $query_all -> fetchAll();
 
-  $query_string_np = "SELECT new_perm('$tipo', '$start', '$end', '$patente;";
+  $inst_chosen = substr($result_puerto[0][0], 1, -1);
+  $id_chosen = explode(",", $inst_chosen);
+
+  /*['se debe cargar petroleo', 'se debe descargar petroleo', 'descarga de containers', 'descarga de pescados']*/
+
+  $query_string_np = "SELECT new_perm('$tipo', '$start', '$end', '$patente', '$id_chosen[0]', 'actividad';";
   $query_new_perm = $db_puertos -> prepare($query_string_np);
   $query_new_perm -> execute()
 

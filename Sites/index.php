@@ -116,6 +116,9 @@
     <br/>
     Patente:
     <input type="text" name="patente">
+    <br/>
+    Actividad:
+    <input type="text" name="actividad">
     <br/><br/>
     <input type="submit" value="Buscar">
   </form>
