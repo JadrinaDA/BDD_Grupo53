@@ -22,7 +22,7 @@ FOR tupla_muelle IN SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fe
 LOOP
 INSERT INTO table_moors VALUES(tupla_muelle.pid, tupla_muelle.iid, tupla_muelle.capacidad, tupla_muelle.fecha_atraque);
 END LOOP;
-atracados_s := [0];
+atracados_s := 0;
 FOR tupla_inst IN SELECT * FROM instalaciones WHERE tipo = 'muelle'
 LOOP
 atracados_s := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid = tupla_inst.iid);
