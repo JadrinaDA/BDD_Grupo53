@@ -13,7 +13,7 @@ cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
 discriminante BOOL;
 BEGIN
-CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, fecha DATE);
+CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, intalaciones_id INTEGER, fecha DATE);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -25,7 +25,7 @@ IF tupla_permisos_permisos_muelle.fecha_atraque >= fecha_inicio AND tupla_permis
 AND tupla_instalaciones.pid = tupla_permisos_permisos_muelle.pid
 THEN 
 cantidad_ocupada_muelles := cantidad_ocupada_muelles + 1;
-INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,tupla_permisos_permisos_muelle.fecha_atraque);
+INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,tupla_instalaciones.iid,tupla_permisos_permisos_muelle.fecha_atraque);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
 END IF;
 END LOOP;
@@ -45,7 +45,7 @@ LOOP
 EXIT WHEN cantidad_de_dias_ocupados_astilleros = 0;
 fecha_auxiliar := tupla_permisos_permisos_atraques.fecha_salida - cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
-INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
+INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,tupla_instalaciones.iid,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
 END LOOP; 
 ELSEIF tupla_permisos_permisos_atraques.fecha_atraque >= fecha_inicio AND tupla_permisos_permisos_atraques.fecha_atraque <= fecha_termino AND discriminante
@@ -56,7 +56,7 @@ LOOP
 EXIT WHEN cantidad_de_dias_ocupados_astilleros = -1; 
 fecha_auxiliar := fecha_termino - cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
-INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
+INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,tupla_instalaciones.iid,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
 END LOOP;
 ELSE
@@ -68,7 +68,7 @@ LOOP
 EXIT WHEN cantidad_de_dias_ocupados_astilleros = 0;
 fecha_auxiliar := tupla_permisos_permisos_atraques.fecha_salida - cantidad_de_dias_ocupados_astilleros;
 cantidad_de_dias_ocupados_astilleros := cantidad_de_dias_ocupados_astilleros - 1; 
-INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,fecha_auxiliar);
+INSERT INTO tabla_auxiliar_id_fecha VALUES(tabla_aux_id_fecha,tupla_instalaciones.iid,fecha_auxiliar);
 tabla_aux_id_fecha := tabla_aux_id_fecha + 1;
 END LOOP; -- 10-9
 END IF;
