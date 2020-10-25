@@ -63,7 +63,7 @@ EXIT WHEN fecha_aux = tupla_asti_2.fecha_salida + 1;
 atracados[fecha_aux - fecha_start] =  atracados[fecha_aux - fecha_start] + 1;
 fecha_aux := fecha_aux + 1;
 END LOOP;
-ELSEIF tupla_asti_2.fecha_start < fecha_start AND tupla_asti_2.fecha_salida > fecha_end
+ELSEIF tupla_asti_2.fecha_atraque < fecha_start AND tupla_asti_2.fecha_salida > fecha_end
 THEN
 fecha_aux := fecha_start;
 LOOP
