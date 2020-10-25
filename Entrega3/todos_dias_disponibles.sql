@@ -13,7 +13,7 @@ cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
 discriminante BOOL;
 BEGIN
-CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, intalaciones_id INTEGER, instalaciones_capacidad,fecha DATE);
+CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, intalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
