@@ -27,7 +27,9 @@
       <th>Capacidad</th>
     </tr>
   <?php
-  foreach ($result_puerto as $inst) {
+  foreach ($result_puerto as $r) {
+      $new_r = substr($r[0], 1, -1);
+      $inst = explode(",", $new_r);
       echo "<tr> <td>$inst[0]</td><td>$inst[1]</td><td>$inst[2]</td></tr>";
   }
   ?>
