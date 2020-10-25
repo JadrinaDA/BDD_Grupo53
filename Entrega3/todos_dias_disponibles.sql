@@ -13,7 +13,7 @@ tabla_aux_id_fecha INTEGER;
 cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
 discriminante BOOL;
-contador_tablas_auxiliar_dias_contados BIGINT;
+contador_tablas_auxiliar_dias_contados INTEGER;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
@@ -83,7 +83,7 @@ LOOP
 IF tupla_dias_permisos.fecha NOT IN (SELECT fecha FROM tabla_auxiliar_dias_contados)
 THEN
 contador_tablas_auxiliar_dias_contados := SELECT COUNT(tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
-WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id AND tabla_auxiliar_id_fecha.fecha = tupla_dias_permisos.fecha GROUP BY fecha;
+WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id AND tabla_auxiliar_id_fecha.fecha=tupla_dias_permisos.fecha GROUP BY fecha;
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
 END IF;
 END LOOP;
