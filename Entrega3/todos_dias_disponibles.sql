@@ -75,7 +75,7 @@ END IF;
 END IF;
 END LOOP; -- 11-4
 END LOOP; -- 12-1;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_id_fecha';
+RETURN QUERY SELECT * FROM tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_id_fecha;
 END;
 $$ language plpgsql 
