@@ -22,11 +22,13 @@
 
 <table>
     <tr>
-      <th>Results</th>
+      <th>ID</th>
+      <th>Tipo</th>
+      <th>Capacidad</th>
     </tr>
   <?php
   foreach ($result_puerto as $inst) {
-      echo "<tr> <td>$inst</td></tr>";
+      echo "<tr> <td>$inst[0]</td><td>$inst[1]</td><td>$inst[2]</td></tr>";
   }
   ?>
   </table>
