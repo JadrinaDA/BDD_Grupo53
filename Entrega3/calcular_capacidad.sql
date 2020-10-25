@@ -75,6 +75,7 @@ END IF;
 END LOOP;
 capacidad_max := tupla_inst_2.capacidad;
 ind := 0;
+has_cap := true;
 LOOP
 EXIT WHEN ind >= dias_int;
 IF atracados[ind] >= capacidad_max
