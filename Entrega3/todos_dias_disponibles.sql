@@ -82,13 +82,15 @@ FOR tupla_dias_permisos IN SELECT * FROM tabla_auxiliar_id_fecha
 LOOP
 IF tupla_dias_permisos.fecha NOT IN (SELECT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados)
 THEN
-contador_tablas_auxiliar_dias_contados := SELECT COUNT(tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
+contador_tablas_auxiliar_dias_contados := SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
 WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id AND tabla_auxiliar_id_fecha.fecha=tupla_dias_permisos.fecha GROUP BY fecha;
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
 END IF;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados';
 DROP TABLE tabla_auxiliar_id_fecha;
+DROP TABLE tabla_auxiliar_dias_contados;
 END;
 $$ language plpgsql 
 
+\
