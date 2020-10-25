@@ -87,7 +87,7 @@ WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
 END IF;
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.fecha';
+RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.instalaciones_id';
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
 END;
