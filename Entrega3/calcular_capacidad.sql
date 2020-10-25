@@ -80,7 +80,7 @@ IF atracados[ind] >= capacidad_max
 THEN
 has_cap := false;
 END IF;
-ind := ind + 1M
+ind := ind + 1M;
 END LOOP;
 INSERT INTO table_cap VALUES(tupla_inst_2.iid, has_cap);
 END LOOP;
