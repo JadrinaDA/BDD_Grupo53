@@ -8,6 +8,7 @@ tupla_inst RECORD;
 tupla_inst_2 RECORD;
 tupla_asti_2 RECORD;
 capacidad_max INT;
+atracados_s INT;
 atracados INT[];
 dias_int INT;
 fecha_aux DATE;
@@ -21,16 +22,16 @@ FOR tupla_muelle IN SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fe
 LOOP
 INSERT INTO table_moors VALUES(tupla_muelle.pid, tupla_muelle.iid, tupla_muelle.capacidad, tupla_muelle.fecha_atraque);
 END LOOP;
-atracados := 0;
+atracados_s := [0];
 FOR tupla_inst IN SELECT * FROM instalaciones WHERE tipo = 'muelle'
 LOOP
-atracados := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid = tupla_inst.iid);
+atracados_s := (SELECT COUNT(*) FROM table_moors WHERE table_moors.iid = tupla_inst.iid);
 capacidad_max := tupla_inst.capacidad;
 INSERT INTO table_cap VALUES(tupla_inst.iid, atracados < capacidad_max);
 END LOOP;
 DROP TABLE table_moors;
-atracados := 0;
 dias_int := fecha_start - fecha_end;
+atracados := ARRAY[dias_int];
 FOR tupla_inst_2 IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
 LOOP
 FOR tupla_asti_2 IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
