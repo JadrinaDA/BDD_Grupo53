@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(fecha_inicio DATE,fecha_termino DATE)
-RETURNS TABLE (tabla_auxiliar_id INTEGER,instalacion_id INTEGER, instalacion_capacidad INTEGER,fecha DATE)
+RETURNS TABLE (dias_contados INTEGER,fecha DATE)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
@@ -75,7 +75,7 @@ END IF;
 END IF;
 END LOOP; -- 11-4
 END LOOP; -- 12-1;
-RETURN QUERY EXECUTE 'SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) AS cantidad_permisos_en_ese_dia FROM tabla_auxiliar_id_fecha GROUP BY tabla_auxiliar_id_fecha.fecha';
+RETURN QUERY EXECUTE 'SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) AS cantidad_permisos_en_ese_dia,tabla_auxiliar_id_fecha.fecha FROM tabla_auxiliar_id_fecha GROUP BY tabla_auxiliar_id_fecha.fecha';
 DROP TABLE tabla_auxiliar_id_fecha;
 END;
 $$ language plpgsql 
