@@ -12,7 +12,7 @@
   $tipo = $_POST["tipo"];
   $start = $_POST["start"];
   $end = $_POST["end"];
-  $patente = $_POST["patente"]
+  $patente = $_POST["patente"];
 
   $query_string_all = "SELECT print_available($tipo, $start, $end);";
   $query_all= $db_puertos -> prepare($query_string_all);
