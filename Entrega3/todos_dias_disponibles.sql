@@ -80,7 +80,7 @@ END LOOP; -- 11-4
 END LOOP; -- 12-1;
 FOR tupla_dias_permisos IN SELECT * FROM tabla_auxiliar_id_fecha
 LOOP
-IF tupla_dias_permisos.fecha NOT IN SELECT fecha FROM tabla_auxiliar_dias_contados
+IF tupla_dias_permisos.fecha NOT IN (SELECT fecha FROM tabla_auxiliar_dias_contados)
 THEN
 contador_tablas_auxiliar_dias_contados := SELECT COUNT(tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id;
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
