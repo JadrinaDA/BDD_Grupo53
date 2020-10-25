@@ -31,7 +31,7 @@ INSERT INTO table_cap VALUES(tupla_inst.iid, atracados_s < capacidad_max);
 END LOOP;
 DROP TABLE table_moors;
 dias_int := fecha_start - fecha_end;
-atracados := INT[dias_int];
+atracados := ARRAY[dias_int];
 FOR tupla_inst_2 IN SELECT * FROM instalaciones WHERE tipo = 'astillero'
 LOOP
 FOR tupla_asti_2 IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instalaciones.iid, instalaciones.capacidad FROM instalaciones
@@ -63,7 +63,7 @@ EXIT WHEN fecha_aux = tupla_asti_2.fecha_salida + 1;
 atracados[fecha_aux - fecha_start] =  atracados[fecha_aux - fecha_start] + 1;
 fecha_aux := fecha_aux + 1;
 END LOOP;
-ELSEIF tupla_asti_2.fecha_start < fecha_start AND tupla_asti_2.fecha_salida > fecha_end
+ELSEIF tupla_asti_2.fecha_atraque < fecha_start AND tupla_asti_2.fecha_salida > fecha_end
 THEN
 fecha_aux := fecha_start;
 LOOP
@@ -81,7 +81,7 @@ IF atracados[ind] >= capacidad_max
 THEN
 has_cap := false;
 END IF;
-ind := ind + 1M;
+ind := ind + 1;
 END LOOP;
 INSERT INTO table_cap VALUES(tupla_inst_2.iid, has_cap);
 END LOOP;
