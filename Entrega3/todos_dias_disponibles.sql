@@ -1,10 +1,11 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(fecha_inicio DATE,fecha_termino DATE)
-RETURNS TABLE (dias_contados BIGINT,fecha DATE)
+RETURNS TABLE (instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
 tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
+tupla_dias_permisos RECORD;
 capacidad_instalacion INTEGER;
 cantidad_ocupada_muelles INTEGER;
 cantidad_ocupada_astilleros INTEGER;
@@ -12,8 +13,10 @@ tabla_aux_id_fecha INTEGER;
 cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
 discriminante BOOL;
+contador_tablas_auxiliar_dias_contados BIGINT;
 BEGIN
-CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, intalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
+CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
+CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -75,7 +78,15 @@ END IF;
 END IF;
 END LOOP; -- 11-4
 END LOOP; -- 12-1;
-RETURN QUERY EXECUTE 'SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) AS cantidad_permisos_en_ese_dia,tabla_auxiliar_id_fecha.fecha FROM tabla_auxiliar_id_fecha GROUP BY tabla_auxiliar_id_fecha.fecha';
+FOR tupla_dias_permisos IN SELECT * FROM tabla_auxiliar_id_fecha
+LOOP
+IF tupla_dias_permisos.fecha NOT IN SELECT fecha FROM tabla_auxiliar_dias_contados
+THEN
+contador_tablas_auxiliar_dias_contados := SELECT COUNT(tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id;
+INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
+END IF;
+END LOOP;
+RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados';
 DROP TABLE tabla_auxiliar_id_fecha;
 END;
 $$ language plpgsql 
