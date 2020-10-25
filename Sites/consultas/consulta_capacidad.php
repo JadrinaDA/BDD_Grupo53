@@ -14,7 +14,7 @@
   $end = $_POST["end"];
   $patente = $_POST["patente"]
 
-  $query_string_all = "SELECT calcular_capacidad($start, $end);";
+  $query_string_all = "SELECT print_available($tipo, $start, $end);";
   $query_all= $db_puertos -> prepare($query_string_all);
   $query_all -> execute();
   $result_puerto = $query_puertos -> fetchAll();
