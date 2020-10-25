@@ -77,11 +77,11 @@ capacidad_max := tupla_inst_2.capacidad;
 ind := 0;
 LOOP
 EXIT WHEN ind = dias_int;
-IF atracados[0] >= capacidad_max
+IF atracados[ind] >= capacidad_max
 THEN
 has_cap := false;
 END IF;
-ind := ind + 1;
+ind := dias_int;
 END LOOP;
 INSERT INTO table_cap VALUES(tupla_inst_2.iid, has_cap);
 END LOOP;
