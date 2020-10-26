@@ -125,6 +125,8 @@ THEN dias_string := CONCAT(variable_contador_dias);
 ELSEIF dias_string != '' AND tupla_instalaciones.capacidad = 3
 THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
 END IF;
+END IF;
+END LOOP;
 IF tupla_instalaciones.capacidad = 1
 THEN
 INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'100%');
@@ -134,8 +136,6 @@ INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalac
 ELSE
 INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'33.33%');
 END IF;
-END IF;
-END LOOP;
 END IF;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles';
