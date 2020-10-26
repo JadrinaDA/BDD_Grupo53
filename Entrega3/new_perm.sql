@@ -9,8 +9,8 @@ IF tipo = 'astillero'
 THEN
 INSERT INTO permisos_astillero VALUES(new_id, fecha_end);
 ELSE
-INSERT INTO permisos_muelle VALUES(new_id, actividad)
+INSERT INTO permisos_muelle VALUES(new_id, actividad);
 END IF;
-INSERT INTO atraques VALUES(new_id, id, patente)
+INSERT INTO atraques VALUES(new_id, id, patente);
 END;
 $$ language plpgsql 
