@@ -3,7 +3,7 @@ RETURNS VOID AS $$
 DECLARE
 new_piid INT;
 BEGIN
-new_id := (SELECT COUNT(*) FROM proximo_itinerario) + 1;
-INSERT INTO proximo_itinerario VALUES(new_id, patente, pid, fecha_llegada);
+new_piid := (SELECT COUNT(*) FROM proximo_itinerario) + 1;
+INSERT INTO proximo_itinerario VALUES(new_piid, patente, pid, fecha_llegada);
 END;
 $$ language plpgsql 
