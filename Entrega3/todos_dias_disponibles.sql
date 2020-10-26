@@ -116,13 +116,13 @@ IF dias_string = '' AND tupla_instalaciones.capacidad = 1
 THEN vairable_pass := 1;
 ELSEIF dias_string != '' AND tupla_instalaciones.capacidad = 1
 THEN vairable_pass := 2;
-ELESEIF IF dias_string = '' AND tupla_instalaciones.capacidad = 2
+ELESEIF dias_string = '' AND tupla_instalaciones.capacidad = 2
 THEN dias_string := CONCAT(variable_contador_dias);
-ELESEIF IF dias_string != '' AND tupla_instalaciones.capacidad = 2
+ELESEIF dias_string != '' AND tupla_instalaciones.capacidad = 2
 THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
-ELESEIF IF dias_string = '' AND tupla_instalaciones.capacidad = 3
+ELESEIF dias_string = '' AND tupla_instalaciones.capacidad = 3
 THEN dias_string := CONCAT(variable_contador_dias);
-ELESEIF IF dias_string != '' AND tupla_instalaciones.capacidad = 3
+ELESEIF dias_string != '' AND tupla_instalaciones.capacidad = 3
 THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
 END IF;
 IF tupla_instalaciones.capacidad = 1
