@@ -90,7 +90,7 @@ LOOP
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,tupla_dias_permisos_contar);
 END LOOP;
 END LOOP;
-FOR variable_contador_dias IN fecha_inicio..fecha_termino
+FOR variable_contador_dias IN SELECT * FROM generate_series(fecha_inicio::DATE,fecha_termino, '1 day')
 LOOP
 variable_webeo := 0;
 INSERT INTO tabla_dias_disponibles VALUES(variable_webeo,variable_webeo,CONCAT(variable_contador_dias),CONCAT(variable_contador_dias,'%'));
