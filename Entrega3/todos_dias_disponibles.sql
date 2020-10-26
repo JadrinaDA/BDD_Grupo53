@@ -6,7 +6,7 @@ tupla_permisos_permisos_atraques RECORD;
 tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
-tupla_dias_permisos_contar RECORD;
+tupla_dias_permisos_contar BIGINT;
 capacidad_instalacion INTEGER;
 cantidad_ocupada_muelles INTEGER;
 cantidad_ocupada_astilleros INTEGER;
