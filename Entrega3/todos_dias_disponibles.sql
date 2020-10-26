@@ -1,11 +1,12 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(fecha_inicio DATE,fecha_termino DATE)
-RETURNS TABLE (instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT)
+RETURNS TABLE (instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
 tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
+tupla_dias_permisos_contar BIGINT;
 capacidad_instalacion INTEGER;
 cantidad_ocupada_muelles INTEGER;
 cantidad_ocupada_astilleros INTEGER;
@@ -14,9 +15,12 @@ cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
 discriminante BOOL;
 contador_tablas_auxiliar_dias_contados INTEGER;
+variable_contador_dias DATE;
+dias_string VARCHAR;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
+CREATE TABLE tabla_dias_disponibles(instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -80,16 +84,29 @@ END LOOP; -- 11-4
 END LOOP; -- 12-1;
 FOR tupla_dias_permisos IN SELECT * FROM tabla_auxiliar_id_fecha
 LOOP
-IF tupla_dias_permisos.fecha NOT IN (SELECT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados)
+FOR tupla_dias_permisos_contar IN SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
+WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id GROUP BY tabla_auxiliar_id_fecha.fecha
+LOOP
+INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,tupla_dias_permisos_contar);
+END LOOP;
+END LOOP;
+FOR tupla_instalaciones IN SELECT * FROM instalaciones
+LOOP
+IF tupla_instalaciones.iid NOT IN (SELECT DISTINCT tabla_auxiliar_dias_contados.instalaciones_id FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid)
 THEN
-contador_tablas_auxiliar_dias_contados := (SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
-WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id AND tabla_auxiliar_id_fecha.fecha=tupla_dias_permisos.fecha GROUP BY tabla_auxiliar_id_fecha.fecha);
-INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
+dias_string := '';
+FOR variable_contador_dias IN SELECT * FROM generate_series(fecha_inicio::DATE,fecha_termino, '1 day')
+LOOP
+IF dias_string = '' THEN dias_string := CONCAT(variable_contador_dias);
+ELSE dias_string := CONCAT(dias_string,',',variable_contador_dias);
 END IF;
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.instalaciones_id';
+INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'0%');
+END IF;
+END LOOP;
+RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles';
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
+DROP TABLE tabla_dias_disponibles;
 END;
 $$ language plpgsql 
-\
