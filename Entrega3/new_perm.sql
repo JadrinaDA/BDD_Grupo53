@@ -3,7 +3,7 @@ RETURNS VOID AS $$
 DECLARE
 new_id INT;
 BEGIN
-new_id := (SELECT COUNT(usuarios.uid) FROM usuarios) + 1;
+new_id := (SELECT COUNT(*) FROM permisos) + 1;
 INSERT INTO permisos VALUES(new_id, fecha_start);
 IF tipo = 'astillero'
 THEN
