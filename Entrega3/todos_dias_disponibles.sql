@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION todos_dias_disponibles(fecha_inicio DATE,fecha_termino DATE)
+CREATE OR REPLACE FUNCTION todos_dias_disponibles(puerto VARCHAR,ciudad VARCHAR,yfecha_inicio DATE,fecha_termino DATE)
 RETURNS TABLE (instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
 AS $$
 DECLARE
@@ -6,6 +6,7 @@ tupla_permisos_permisos_atraques RECORD;
 tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
+tupla_auxiliar RECORD;
 tupla_dias_permisos_contar BIGINT;
 capacidad_instalacion INTEGER;
 cantidad_ocupada_muelles INTEGER;
@@ -18,10 +19,12 @@ contador_tablas_auxiliar_dias_contados INTEGER;
 variable_contador_dias DATE;
 dias_string VARCHAR;
 vairable_pass INTEGER;
+id INTEGER;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
 CREATE TABLE tabla_dias_disponibles(instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
+CREATE TABLE tabla_dias_disponibles_cesgados(instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -138,7 +141,12 @@ INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalac
 END IF;
 END IF;
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles';
+FOR tupla_dias_permiso IN SELECT * FROM (SELECT pertenece_a.iid FROM puertos, pertenece_a WHERE puertos.nombre=pertenece_a.nombre_puerto) AS consulta_aux WHERE nombre=puerto
+LOOP
+tupla_auxiliar := SELECT * FROM tabla_dias_disponibles WHERE tabla_dias_disponibles.instalaciones_id=tupla_dias_permiso;
+INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalacion_dias_disponibles, tupla_auxiliar.porcentaje_de_ocupacion);
+END LOOP;
+RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles_cesgados';
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
 DROP TABLE tabla_dias_disponibles;
