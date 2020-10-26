@@ -7,6 +7,7 @@ tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
 tupla_auxiliar RECORD;
+tupla_dias_permiso_auxiliar RECORD;
 tupla_dias_permisos_contar BIGINT;
 capacidad_instalacion INTEGER;
 cantidad_ocupada_muelles INTEGER;
@@ -141,7 +142,7 @@ INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalac
 END IF;
 END IF;
 END LOOP;
-FOR tupla_dias_permiso IN SELECT * FROM (SELECT pertenece_a.iid FROM puertos, pertenece_a WHERE puertos.nombre=pertenece_a.nombre_puerto) AS consulta_aux WHERE nombre=puerto
+FOR tupla_dias_permiso_auxiliar IN SELECT * FROM (SELECT pertenece_a.iid FROM puertos, pertenece_a WHERE puertos.nombre=pertenece_a.nombre_puerto) AS consulta_aux WHERE nombre=puerto
 LOOP
 tupla_auxiliar := SELECT * FROM tabla_dias_disponibles WHERE tabla_dias_disponibles.instalaciones_id=tupla_dias_permiso;
 INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalacion_dias_disponibles, tupla_auxiliar.porcentaje_de_ocupacion);
