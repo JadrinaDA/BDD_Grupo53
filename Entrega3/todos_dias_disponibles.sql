@@ -136,6 +136,8 @@ INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalac
 END IF;
 END IF;
 END LOOP;
+END IF;
+END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles';
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
