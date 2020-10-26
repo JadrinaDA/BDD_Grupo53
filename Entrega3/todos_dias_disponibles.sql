@@ -16,7 +16,7 @@ fecha_auxiliar DATE;
 discriminante BOOL;
 contador_tablas_auxiliar_dias_contados INTEGER;
 variable_contador_dias DATE;
-variable_webeo INTEGER;
+dias_string VARCHAR;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
@@ -90,10 +90,19 @@ LOOP
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,tupla_dias_permisos_contar);
 END LOOP;
 END LOOP;
+FOR tupla_instalaciones IN SELECT * FROM instalaciones
+LOOP
+IF tupla_instalaciones.iid NOT IN (SELECT DISTINCT tabla_auxiliar_dias_contados.instalaciones_id FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid)
+THEN
+dias_string := '';
 FOR variable_contador_dias IN SELECT * FROM generate_series(fecha_inicio::DATE,fecha_termino, '1 day')
 LOOP
-variable_webeo := 0;
-INSERT INTO tabla_dias_disponibles VALUES(variable_webeo,variable_webeo,CONCAT(variable_contador_dias),CONCAT(variable_contador_dias,'%'));
+IF dias_string = '' THEN dias_string := CONCAT(variable_contador_dias);
+ELSE dias_string := CONCAT(dias_string,',',variable_contador_dias);
+END IF;
+END LOOP;
+INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'0%');
+END IF;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles';
 DROP TABLE tabla_auxiliar_id_fecha;
