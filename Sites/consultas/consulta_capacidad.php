@@ -25,9 +25,9 @@
 
   /*['se debe cargar petroleo', 'se debe descargar petroleo', 'descarga de containers', 'descarga de pescados']*/
 
-  $query_string_np = "SELECT new_perm('$tipo', '$start', '$end', '$patente', '$id_chosen[0]', 'actividad';";
+  $query_string_np = "SELECT new_perm('$tipo', '$start', '$end', '$patente', '$id_chosen[0]', '$actividad');";
   $query_new_perm = $db_puertos -> prepare($query_string_np);
-  $query_new_perm -> execute()
+  $query_new_perm -> execute();
 
 ?>
 
