@@ -6,7 +6,7 @@ tupla_permisos_permisos_atraques RECORD;
 tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
-tupla_auxiliar RECORD;
+tupla_auxiliar VARCHAR;
 tupla_dias_permiso_auxiliar RECORD;
 tupla_dias_permisos_contar BIGINT;
 capacidad_instalacion INTEGER;
