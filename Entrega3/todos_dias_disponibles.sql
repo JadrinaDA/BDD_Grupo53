@@ -82,8 +82,9 @@ END LOOP; -- 12-1;
 FOR tupla_dias_permisos IN SELECT * FROM tabla_auxiliar_id_fecha
 LOOP
 FOR tupla_dias_permisos_contar IN SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
-WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id AND tabla_auxiliar_id_fecha.fecha=tupla_dias_permisos.fecha GROUP BY tabla_auxiliar_id_fecha.fecha;
-INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
+WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id GROUP BY tabla_auxiliar_id_fecha.fecha
+LOOP
+INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,tupla_dias_permisos_contar);
 END LOOP;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.instalaciones_id';
