@@ -15,9 +15,12 @@ cantidad_de_dias_ocupados_astilleros INTEGER;
 fecha_auxiliar DATE;
 discriminante BOOL;
 contador_tablas_auxiliar_dias_contados INTEGER;
+variable_contador_dias DATE;
+variable_webeo INTEGER;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
+CREATE TABLE tabla_dias_disponibles(instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -87,8 +90,15 @@ LOOP
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,tupla_dias_permisos_contar);
 END LOOP;
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT DISTINCT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.instalaciones_id';
+FOR variable_contador_dias IN fecha_inicio..fecha_termino
+LOOP
+tabla_dias_disponibles(instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
+variable_webeo := 0
+INSERT INTO tabla_dias_disponibles VALUES(variable_webeo,variable_webeo,CONCAT(variable_contador_dias),CONCAT(variable_contador_dias,'%'))
+END LOOP;
+RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles';
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
+DROP TABLE tabla_dias_disponibles;
 END;
 $$ language plpgsql 
