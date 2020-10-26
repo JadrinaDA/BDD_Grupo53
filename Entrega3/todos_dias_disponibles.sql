@@ -154,4 +154,4 @@ DROP TABLE tabla_auxiliar_dias_contados;
 DROP TABLE tabla_dias_disponibles;
 DROP TABLE tabla_dias_disponibles_cesgados;
 END;
-$$ language plpgsql 
+$$ language 'plpgsql'; 
