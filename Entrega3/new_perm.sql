@@ -7,9 +7,9 @@ new_id := (SELECT COUNT(usuarios.uid) FROM usuarios) + 1;
 INSERT INTO permisos VALUES(new_id, fecha_start);
 IF tipo = 'astillero'
 THEN
-INSERT INTO permisos_astillero(new_id, fecha_end);
+INSERT INTO permisos_astillero VALUES(new_id, fecha_end);
 ELSE
-INSERT INTO permisos_muelle(new_id, actividad)
+INSERT INTO permisos_muelle VALUES(new_id, actividad)
 END IF;
 INSERT INTO atraques VALUES(new_id, id, patente)
 END;
