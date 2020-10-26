@@ -87,7 +87,7 @@ LOOP
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,tupla_dias_permisos_contar);
 END LOOP;
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.instalaciones_id';
+RETURN QUERY EXECUTE 'SELECT DISTINCT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.instalaciones_id';
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
 END;
