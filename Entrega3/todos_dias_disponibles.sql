@@ -112,17 +112,17 @@ THEN dias_string := CONCAT(variable_contador_dias);
 ELSEIF variable_contador_dias NOT IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != ''
 THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
 ELSE
-IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string = '' AND tupla_instalaciones.capacidad = 1
+IF dias_string = '' AND tupla_instalaciones.capacidad = 1
 THEN vairable_pass := 1;
-ELSEIF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != '' AND tupla_instalaciones.capacidad = 1
+ELSEIF dias_string != '' AND tupla_instalaciones.capacidad = 1
 THEN vairable_pass := 2;
-ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string = '' AND tupla_instalaciones.capacidad = 2
+ELESEIF IF dias_string = '' AND tupla_instalaciones.capacidad = 2
 THEN dias_string := CONCAT(variable_contador_dias);
-ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != '' AND tupla_instalaciones.capacidad = 2
+ELESEIF IF dias_string != '' AND tupla_instalaciones.capacidad = 2
 THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
-ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string = '' AND tupla_instalaciones.capacidad = 3
+ELESEIF IF dias_string = '' AND tupla_instalaciones.capacidad = 3
 THEN dias_string := CONCAT(variable_contador_dias);
-ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != '' AND tupla_instalaciones.capacidad = 3
+ELESEIF IF dias_string != '' AND tupla_instalaciones.capacidad = 3
 THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
 END IF;
 IF tupla_instalaciones.capacidad = 1
