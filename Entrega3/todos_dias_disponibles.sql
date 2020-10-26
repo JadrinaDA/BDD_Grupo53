@@ -17,6 +17,7 @@ discriminante BOOL;
 contador_tablas_auxiliar_dias_contados INTEGER;
 variable_contador_dias DATE;
 dias_string VARCHAR;
+vairable_pass INTEGER;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
@@ -102,6 +103,37 @@ ELSE dias_string := CONCAT(dias_string,',',variable_contador_dias);
 END IF;
 END LOOP;
 INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'0%');
+ELSE
+dias_string := '';
+FOR variable_contador_dias IN SELECT * FROM generate_series(fecha_inicio::DATE,fecha_termino, '1 day')
+LOOP
+IF variable_contador_dias NOT IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string = ''
+THEN dias_string := CONCAT(variable_contador_dias);
+ELSEIF variable_contador_dias NOT IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != ''
+THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
+ELSE
+IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string = '' AND tupla_instalaciones.capacidad = 1
+THEN vairable_pass := 1;
+ELSEIF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != '' AND tupla_instalaciones.capacidad = 1
+THEN vairable_pass := 2;
+ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string = '' AND tupla_instalaciones.capacidad = 2
+THEN dias_string := CONCAT(variable_contador_dias);
+ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != '' AND tupla_instalaciones.capacidad = 2
+THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
+ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string = '' AND tupla_instalaciones.capacidad = 3
+THEN dias_string := CONCAT(variable_contador_dias);
+ELESEIF IF variable_contador_dias IN (SELECT DISTINCT tabla_auxiliar_dias_contados.fecha FROM tabla_auxiliar_dias_contados WHERE tabla_auxiliar_dias_contados.instalaciones_id=tupla_instalaciones.iid) AND dias_string != '' AND tupla_instalaciones.capacidad = 3
+THEN dias_string := CONCAT(dias_string,',',variable_contador_dias);
+END IF;
+IF tupla_instalaciones.capacidad = 1
+THEN
+INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'100%');
+ELSEIF tupla_instalaciones.capacidad = 2
+THEN
+INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'50%');
+ELSE
+INSERT INTO tabla_dias_disponibles VALUES(tupla_instalaciones.iid,tupla_instalaciones.capacidad,dias_string,'33.33%');
+END IF;
 END IF;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles';
