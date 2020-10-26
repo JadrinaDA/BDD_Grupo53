@@ -148,7 +148,7 @@ id := tupla_dias_permiso_auxiliar.iid;
 SELECT INTO tupla_auxiliar * FROM tabla_dias_disponibles WHERE tabla_dias_disponibles.instalaciones_id=id;
 INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalacion_dias_disponibles, tupla_auxiliar.porcentaje_de_ocupacion);
 END LOOP;
-RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles_cesgados';
+RETURN QUERY SELECT * FROM tabla_dias_disponibles_cesgados;
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
 DROP TABLE tabla_dias_disponibles;
