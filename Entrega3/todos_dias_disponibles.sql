@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION todos_dias_disponibles(puerto VARCHAR,ciudad VARCHAR,yfecha_inicio DATE,fecha_termino DATE)
+CREATE OR REPLACE FUNCTION todos_dias_disponibles(puerto VARCHAR,fecha_inicio DATE,fecha_termino DATE)
 RETURNS TABLE (instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
 AS $$
 DECLARE
