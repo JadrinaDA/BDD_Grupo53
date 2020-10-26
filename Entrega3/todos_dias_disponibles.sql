@@ -6,6 +6,7 @@ tupla_permisos_permisos_atraques RECORD;
 tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
+tupla_dias_permisos_contar RECORD;
 capacidad_instalacion INTEGER;
 cantidad_ocupada_muelles INTEGER;
 cantidad_ocupada_astilleros INTEGER;
@@ -80,9 +81,10 @@ END LOOP; -- 11-4
 END LOOP; -- 12-1;
 FOR tupla_dias_permisos IN SELECT * FROM tabla_auxiliar_id_fecha
 LOOP
-contador_tablas_auxiliar_dias_contados := (SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
-WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id GROUP BY tabla_auxiliar_id_fecha.fecha);
+FOR tupla_dias_permisos_contar IN SELECT COUNT(tabla_auxiliar_id_fecha.tabla_auxiliar_id) FROM tabla_auxiliar_id_fecha 
+WHERE tabla_auxiliar_id_fecha.instalaciones_id=tupla_dias_permisos.instalaciones_id AND tabla_auxiliar_id_fecha.fecha=tupla_dias_permisos.fecha GROUP BY tabla_auxiliar_id_fecha.fecha;
 INSERT INTO tabla_auxiliar_dias_contados VALUES(tupla_dias_permisos.instalaciones_id,tupla_dias_permisos.instalaciones_capacidad,tupla_dias_permisos.fecha,contador_tablas_auxiliar_dias_contados);
+END LOOP;
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_auxiliar_dias_contados ORDER BY tabla_auxiliar_dias_contados.instalaciones_id';
 DROP TABLE tabla_auxiliar_id_fecha;
