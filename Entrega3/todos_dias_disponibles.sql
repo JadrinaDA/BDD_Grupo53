@@ -151,5 +151,6 @@ RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles_cesgados';
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
 DROP TABLE tabla_dias_disponibles;
+DROP TABLE tabla_dias_disponibles_cesgados;
 END;
 $$ language plpgsql 
