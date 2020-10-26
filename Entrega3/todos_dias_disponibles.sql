@@ -145,8 +145,8 @@ END LOOP;
 FOR tupla_dias_permiso_auxiliar IN SELECT * FROM (SELECT puertos.nombre,pertenece_a.iid FROM puertos, pertenece_a WHERE puertos.nombre=pertenece_a.nombre_puerto) AS consulta_aux WHERE nombre=puerto
 LOOP
 id := tupla_dias_permiso_auxiliar.iid;
-tupla_auxiliar := (SELECT * FROM tabla_dias_disponibles WHERE tabla_dias_disponibles.instalaciones_id=id);
-INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalacion_dias_disponibles, tupla_auxiliar.porcentaje_de_ocupacion);
+tupla_auxiliar := 'FUNCIONO CTM';
+INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar, tupla_auxiliar);
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles_cesgados';
 DROP TABLE tabla_auxiliar_id_fecha;
