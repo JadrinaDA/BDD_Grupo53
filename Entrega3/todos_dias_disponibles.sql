@@ -6,7 +6,7 @@ tupla_permisos_permisos_atraques RECORD;
 tupla_permisos_permisos_muelle RECORD;
 tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
-tupla_auxiliar VARCHAR;
+tupla_auxiliar RECORD;
 tupla_dias_permiso_auxiliar RECORD;
 tupla_dias_permisos_contar BIGINT;
 capacidad_instalacion INTEGER;
@@ -145,8 +145,7 @@ END LOOP;
 FOR tupla_dias_permiso_auxiliar IN SELECT * FROM (SELECT puertos.nombre,pertenece_a.iid FROM puertos, pertenece_a WHERE puertos.nombre=pertenece_a.nombre_puerto) AS consulta_aux WHERE nombre=puerto
 LOOP
 id := tupla_dias_permiso_auxiliar.iid;
-tupla_auxiliar := 'FUNCIONO CTM';
-INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar, tupla_auxiliar);
+INSERT INTO tabla_dias_disponibles_cesgados VALUES(CONCAT(id),CONCAT(id));
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM tabla_dias_disponibles_cesgados';
 DROP TABLE tabla_auxiliar_id_fecha;
