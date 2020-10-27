@@ -22,7 +22,7 @@ variable_contador_dias DATE;
 dias_string VARCHAR;
 vairable_pass INTEGER;
 id INTEGER;
-string_to_array VARCHAR[];
+string_to_array TEXT[];
 array_text VARCHAR;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
