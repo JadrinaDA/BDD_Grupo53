@@ -47,7 +47,7 @@ THEN
 atracados := atracados + 1;
 END IF;
 END LOOP; -- end 3
-has_cap := tupla_inst.iid > atracados;
+has_cap := tupla_inst.capacidad > atracados;
 fecha_aux := fecha_aux + 1;
 END LOOP; -- end 2
 INSERT INTO table_cap VALUES(tupla_inst_2.iid, has_cap);
