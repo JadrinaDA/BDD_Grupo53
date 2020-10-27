@@ -36,13 +36,12 @@ LOOP -- 1
 has_cap := true;
 fecha_aux := fecha_start;
 LOOP -- 2
-EXIT WHEN fecha_aux = fecha_end + 1;
+EXIT WHEN fecha_aux = fecha_end + 1 OR has_cap = false;
 atracados := 0;
 FOR tupla_asti_2 IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instas.iid, instas.capacidad FROM 
 	(SELECT int_p.iid, instalaciones.tipo, instalaciones.capacidad FROM (SELECT pertenece_a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto) AS int_p INNER JOIN instalaciones ON int_p.iid = instalaciones.iid WHERE instalaciones.tipo = 'astillero') AS instas
  INNER JOIN atraques ON instas.iid = atraques.iid) AS insts INNER JOIN permisos ON insts.pid = permisos.pid)) as astis INNER JOIN permisos_astillero ON astis.pid = permisos_astillero.pid) WHERE astis.iid = tupla_inst_2.iid
 LOOP -- 3
-EXIT WHEN has_cap = false;
 IF fecha_aux >= tupla_asti_2.fecha_atraque AND fecha_aux >= tupla_asti_2.fecha_salida
 THEN
 atracados := atracados + 1;
@@ -50,10 +49,10 @@ END IF;
 END LOOP; -- end 3
 has_cap := tupla_inst.iid > atracados;
 fecha_aux := fecha_aux + 1;
-END LOOP; -- 3nd 2
+END LOOP; -- end 2
 INSERT INTO table_cap VALUES(tupla_inst_2.iid, has_cap);
 END LOOP; -- end 1
-RETURN QUERY EXECUTE 'SELECT DISTINCT pertenece_a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto';
+RETURN QUERY EXECUTE 'SELECT * FROM table_cap ORDER BY iid';
 DROP TABLE table_cap;
 END;
 $$ language plpgsql 
