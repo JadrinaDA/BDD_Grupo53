@@ -31,7 +31,8 @@ capacidad_max := tupla_inst.capacidad;
 INSERT INTO table_cap VALUES(tupla_inst.iid, atracados_s < capacidad_max);
 END LOOP;
 DROP TABLE table_moors;
-FOR tupla_inst_2 IN SELECT DISTINCT pertenece_a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto
+FOR tupla_inst_2 IN SELECT instalaciones.iid FROM instalaciones WHERE instalciones.tipo = 'astillero' AND instalaciones.iid IN ( SELECT DISTINCT pertenece_
+a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto)
 LOOP -- 1
 has_cap := true;
 fecha_aux := fecha_start;
@@ -50,7 +51,7 @@ END LOOP; -- end 3
 has_cap := tupla_inst.iid > atracados;
 fecha_aux := fecha_aux + 1;
 END LOOP; -- end 2
-INSERT INTO table_cap VALUES(tupla_inst_2.iid, atracados > 0);
+INSERT INTO table_cap VALUES(tupla_inst_2.iid, has_cap);
 END LOOP; -- end 1
 RETURN QUERY EXECUTE 'SELECT * FROM table_cap ORDER BY iid';
 DROP TABLE table_cap;
