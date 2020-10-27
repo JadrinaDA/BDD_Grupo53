@@ -32,7 +32,7 @@ INSERT INTO table_cap VALUES(tupla_inst.iid, atracados_s < capacidad_max);
 END LOOP;
 DROP TABLE table_moors;
 dias_int := fecha_start - fecha_end;
-FOR tupla_inst_2 IN SELECT pertenece_a.iid FROM pertenece_a WHERE pertenece.nombre_puerto = puerto
+FOR tupla_inst_2 IN SELECT pertenece_a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto
 LOOP
 atracados := ARRAY[dias_int];
 FOR tupla_asti_2 IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, astis.fecha_atraque, permisos_astillero.fecha_salida FROM ((SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT pid, instas.iid, instas.capacidad FROM 
