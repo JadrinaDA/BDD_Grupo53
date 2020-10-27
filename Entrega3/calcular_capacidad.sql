@@ -74,8 +74,8 @@ atracados[fecha_aux - fecha_start] =  atracados[fecha_aux - fecha_start] + 1;
 fecha_aux := fecha_aux + 1;
 END LOOP;
 END IF;
+capacidad_max := tupla_asti_2.capacidad;
 END LOOP;
-capacidad_max := tupla_inst_2.capacidad;
 ind := 0;
 has_cap := true;
 LOOP
