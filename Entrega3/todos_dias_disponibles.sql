@@ -1,5 +1,5 @@
-CREATE OR REPLACE FUNCTION todos_dias_disponibles(puerto VARCHAR,fecha_inicio DATE,fecha_termino DATE)
-RETURNS TABLE (instalacion_iid INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
+CREATE OR REPLACE FUNCTION todos_dias_disponibles(puerto VARCHAR,instalacion_iid INTEGER,fecha_inicio DATE,fecha_termino DATE)
+RETURNS TABLE (instalaciones_iid INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
@@ -8,6 +8,7 @@ tupla_instalaciones RECORD;
 tupla_dias_permisos RECORD;
 tupla_auxiliar RECORD;
 tupla_dias_permiso_auxiliar RECORD;
+tupla_dias_string_to_array RECORD;
 tupla_dias_permisos_contar BIGINT;
 capacidad_instalacion INTEGER;
 cantidad_ocupada_muelles INTEGER;
@@ -21,11 +22,14 @@ variable_contador_dias DATE;
 dias_string VARCHAR;
 vairable_pass INTEGER;
 id INTEGER;
+string_to_array TEXT[];
+array_text VARCHAR;
 BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
 CREATE TABLE tabla_dias_disponibles(instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 CREATE TABLE tabla_dias_disponibles_cesgados(instalaciones_id INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
+CREATE TABLE tabla_dias_disponibles_cesgados_instalacion_particular(instalaciones_id INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -148,7 +152,13 @@ id := tupla_dias_permiso_auxiliar.iid;
 SELECT INTO tupla_auxiliar * FROM tabla_dias_disponibles WHERE tabla_dias_disponibles.instalaciones_id=id;
 INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalaciones_id,tupla_auxiliar.instalacion_dias_disponibles, tupla_auxiliar.porcentaje_de_ocupacion);
 END LOOP;
-RETURN QUERY SELECT * FROM tabla_dias_disponibles_cesgados;
+SELECT INTO tupla_dias_string_to_array * FROM tabla_dias_disponibles_cesgados WHERE tabla_dias_disponibles_cesgados.instalaciones_id=instalacion_iid;
+string_to_array := STRING_TO_ARRAY(tupla_dias_string_to_array.instalacion_dias_disponibles,',');
+FOR array_text IN string_to_array
+LOOP
+INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular(tupla_dias_string_to_array.instalaciones_id,array_text,tupla_dias_string_to_array.porcentaje_de_ocupacion);
+END LOOP;
+RETURN QUERY SELECT * FROM tabla_dias_disponibles_cesgados_instalacion_particular;
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
 DROP TABLE tabla_dias_disponibles;
