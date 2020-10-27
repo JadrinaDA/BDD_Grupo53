@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION print_available(puerto, VARCHAR tipo_chosen VARCHAR, fecha_start DATE, fecha_end DATE)
+CREATE OR REPLACE FUNCTION print_available(puerto VARCHAR, tipo_chosen VARCHAR, fecha_start DATE, fecha_end DATE)
 RETURNS TABLE(iid INT, tipo VARCHAR(100), capacidad INT) 
 AS $$
 DECLARE
