@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(puerto VARCHAR,fecha_inicio DATE,fecha_termino DATE)
-RETURNS TABLE (instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
+RETURNS TABLE (instalacion_iid INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
@@ -25,7 +25,7 @@ BEGIN
 CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id INTEGER, instalaciones_capacidad INTEGER,fecha DATE);
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
 CREATE TABLE tabla_dias_disponibles(instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
-CREATE TABLE tabla_dias_disponibles_cesgados(instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
+CREATE TABLE tabla_dias_disponibles_cesgados(instalaciones_id INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -146,7 +146,7 @@ FOR tupla_dias_permiso_auxiliar IN SELECT * FROM (SELECT puertos.nombre,pertenec
 LOOP
 id := tupla_dias_permiso_auxiliar.iid;
 SELECT INTO tupla_auxiliar * FROM tabla_dias_disponibles WHERE tabla_dias_disponibles.instalaciones_id=id;
-INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalacion_dias_disponibles, tupla_auxiliar.porcentaje_de_ocupacion);
+INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalaciones_id,tupla_auxiliar.instalacion_dias_disponibles, tupla_auxiliar.porcentaje_de_ocupacion);
 END LOOP;
 RETURN QUERY SELECT * FROM tabla_dias_disponibles_cesgados;
 DROP TABLE tabla_auxiliar_id_fecha;
