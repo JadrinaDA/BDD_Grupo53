@@ -15,7 +15,7 @@ fecha_aux DATE;
 has_cap bool;
 ind INT;
 BEGIN
-CREATE TABLE table_cap(iid INT, tiene_capacidad INT);
+CREATE TABLE table_cap(iid INT, tiene_capacidad bool);
 CREATE TABLE table_moors(pid INT, iid INT, capacidad INT, fecha_atraque DATE);
 FOR tupla_muelle IN SELECT permisos.pid, insts.iid, insts.capacidad, permisos.fecha_atraque FROM ((SELECT atraques.pid, instas.iid, instas.capacidad FROM
  (SELECT int_p.iid, instalaciones.tipo, instalaciones.capacidad FROM (SELECT pertenece_a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto) AS int_p INNER JOIN instalaciones ON int_p.iid = instalaciones.iid WHERE instalaciones.tipo = 'muelle') AS instas
@@ -50,7 +50,7 @@ END LOOP; -- end 3
 has_cap := tupla_inst.iid > atracados;
 fecha_aux := fecha_aux + 1;
 END LOOP; -- end 2
-INSERT INTO table_cap VALUES(tupla_inst_2.iid, atracados);
+INSERT INTO table_cap VALUES(tupla_inst_2.iid, atracados > 0);
 END LOOP; -- end 1
 RETURN QUERY EXECUTE 'SELECT * FROM table_cap ORDER BY iid';
 DROP TABLE table_cap;
