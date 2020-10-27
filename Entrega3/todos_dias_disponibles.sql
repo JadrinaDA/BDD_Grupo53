@@ -156,7 +156,7 @@ string_to_array := (SELECT * FROM STRING_TO_ARRAY(tupla_dias_string_to_array.ins
 FOR array_text IN SELECT * FROM string_to_array
 LOOP
 SELECT INTO tupla_dias_string_to_array * FROM tabla_dias_disponibles_cesgados WHERE tabla_dias_disponibles_cesgados.instalaciones_id=instalacion_iid;
-INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular(tupla_dias_string_to_array.instalaciones_id,array_text,tupla_dias_string_to_array.porcentaje_de_ocupacion);
+INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular(1,array_text,'matame');
 END LOOP;
 RETURN QUERY SELECT * FROM tabla_dias_disponibles_cesgados_instalacion_particular;
 DROP TABLE tabla_auxiliar_id_fecha;
