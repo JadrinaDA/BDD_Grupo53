@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION todos_dias_disponibles(puerto VARCHAR,instalacion_iid INTEGER,fecha_inicio DATE,fecha_termino DATE)
-RETURNS TABLE (instalacion_iid INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
+RETURNS TABLE (instalaciones_iid INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR)
 AS $$
 DECLARE
 tupla_permisos_permisos_atraques RECORD;
