@@ -42,7 +42,7 @@ FOR tupla_asti_2 IN SELECT permisos_astillero.pid, astis.iid, astis.capacidad, a
 	(SELECT int_p.iid, instalaciones.tipo, instalaciones.capacidad FROM (SELECT pertenece_a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto) AS int_p INNER JOIN instalaciones ON int_p.iid = instalaciones.iid WHERE instalaciones.tipo = 'astillero') AS instas
  INNER JOIN atraques ON instas.iid = atraques.iid) AS insts INNER JOIN permisos ON insts.pid = permisos.pid)) as astis INNER JOIN permisos_astillero ON astis.pid = permisos_astillero.pid) WHERE astis.iid = tupla_inst_2.iid
 LOOP
-EXIT WHEN has_cap := false;
+EXIT WHEN has_cap = false;
 IF fecha_aux >= tupla_asti_2.fecha_atraque AND fecha_aux >= tupla_asti_2.fecha_salida
 THEN
 atracados := atracados + 1;
