@@ -7,11 +7,9 @@ pos_com INT;
 string CHAR(100);
 BEGIN
 CREATE TABLE tabla_aux(iid INT, tiene_capacidad bool);
-FOR tupla IN SELECT calcular_capacidad(puerto, fecha_start, fecha_end) WHERE has_capacidad = 'true'
+FOR tupla IN SELECT * FROM calcular_capacidad(puerto, fecha_start, fecha_end) WHERE tiene_capacidad = 'true'
 LOOP
-string := CAST(tupla.calcular_capacidad AS CHAR(100));
-pos_com := POSITION(',' IN string);
-INSERT INTO tabla_aux VALUES(CAST(SUBSTRING(string , 2, pos_com - 2) AS INT), CAST(SUBSTRING(string , pos_com + 1, 1) AS bool));
+INSERT INTO tabla_aux VALUES(tupla.iid, tupla.tiene_capacidad);
 END LOOP;
 CREATE TABLE tabla_aux_2(iid INT, tipo VARCHAR(100), capacidad INT);
 FOR tupla IN SELECT * FROM instalaciones
