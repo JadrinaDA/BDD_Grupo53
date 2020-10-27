@@ -33,6 +33,7 @@ END LOOP;
 DROP TABLE table_moors;
 dias_int := fecha_start - fecha_end;
 FOR tupla_inst_2 IN SELECT pertenece_a.iid FROM pertenece_a WHERE pertenece_a.nombre_puerto = puerto
+LOOP
 has_cap := true
 fecha_aux := fecha_start;
 atracados := 0;
