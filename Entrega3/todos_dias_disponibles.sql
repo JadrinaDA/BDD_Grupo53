@@ -154,7 +154,7 @@ INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalaciones_
 END LOOP;
 SELECT INTO tupla_dias_string_to_array * FROM tabla_dias_disponibles_cesgados WHERE tabla_dias_disponibles_cesgados.instalaciones_id=instalacion_iid;
 string_to_array_variable := ARRAY(SELECT * FROM STRING_TO_ARRAY(tupla_dias_string_to_array.instalacion_dias_disponibles,','));
-FOREACH array_text IN string_to_array_variable
+FOREACH array_text IN ARRAY(SELECT * FROM STRING_TO_ARRAY(tupla_dias_string_to_array.instalacion_dias_disponibles,','))
 LOOP
 INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular VALUES(tupla_dias_string_to_array.instalaciones_id,array_text,tupla_dias_string_to_array.porcentaje_de_ocupacion);
 END LOOP;
