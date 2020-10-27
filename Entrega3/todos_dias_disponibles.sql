@@ -155,8 +155,9 @@ END LOOP;
 string_to_array := (SELECT * FROM STRING_TO_ARRAY(tupla_dias_string_to_array.instalacion_dias_disponibles,','));
 FOR array_text IN SELECT * FROM string_to_array
 LOOP
+id := 1;
 SELECT INTO tupla_dias_string_to_array * FROM tabla_dias_disponibles_cesgados WHERE tabla_dias_disponibles_cesgados.instalaciones_id=instalacion_iid;
-INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular(1,array_text,'matame');
+INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular(id,array_text,'matame');
 END LOOP;
 RETURN QUERY SELECT * FROM tabla_dias_disponibles_cesgados_instalacion_particular;
 DROP TABLE tabla_auxiliar_id_fecha;
