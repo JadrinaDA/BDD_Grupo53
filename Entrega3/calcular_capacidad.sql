@@ -86,7 +86,7 @@ has_cap := false;
 END IF;
 ind := ind + 1;
 END LOOP;
-INSERT INTO table_cap VALUES(tupla_asti_2.iid, has_cap);
+INSERT INTO table_cap VALUES(tupla_inst_2.iid, has_cap);
 END LOOP;
 RETURN QUERY EXECUTE 'SELECT * FROM table_cap ORDER BY iid';
 DROP TABLE table_cap;
