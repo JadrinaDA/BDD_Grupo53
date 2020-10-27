@@ -29,7 +29,7 @@ CREATE TABLE tabla_auxiliar_id_fecha(tabla_auxiliar_id INTEGER, instalaciones_id
 CREATE TABLE tabla_auxiliar_dias_contados(instalaciones_id INTEGER,instalacion_capacidad INTEGER,fecha DATE, dias_contados BIGINT);
 CREATE TABLE tabla_dias_disponibles(instalaciones_id INTEGER,instalacion_capacidad INTEGER, instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 CREATE TABLE tabla_dias_disponibles_cesgados(instalaciones_id INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
-CREATE TABLE tabla_dias_disponibles_cesgados_instalacion_particular(instalaciones_id INTEGER,instalacion_dias_disponibles TEXT[], porcentaje_de_ocupacion VARCHAR);
+CREATE TABLE tabla_dias_disponibles_cesgados_instalacion_particular(instalaciones_id INTEGER,instalacion_dias_disponibles VARCHAR, porcentaje_de_ocupacion VARCHAR);
 tabla_aux_id_fecha := 0;
 FOR tupla_instalaciones IN SELECT * FROM instalaciones,atraques WHERE instalaciones.iid=atraques.iid
 LOOP
@@ -154,7 +154,10 @@ INSERT INTO tabla_dias_disponibles_cesgados VALUES(tupla_auxiliar.instalaciones_
 END LOOP;
 SELECT INTO tupla_dias_string_to_array * FROM tabla_dias_disponibles_cesgados WHERE tabla_dias_disponibles_cesgados.instalaciones_id=instalacion_iid;
 string_to_array := STRING_TO_ARRAY(tupla_dias_string_to_array.instalacion_dias_disponibles,',')::TEXT[];
-INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular(tupla_dias_string_to_array.instalaciones_id,string_to_array,tupla_dias_string_to_array.porcentaje_de_ocupacion);
+FOREACH array_text IN string_to_array
+LOOP
+INSERT INTO tabla_dias_disponibles_cesgados_instalacion_particular(tupla_dias_string_to_array.instalaciones_id,array_text,tupla_dias_string_to_array.porcentaje_de_ocupacion);
+END LOOP;
 RETURN QUERY SELECT * FROM tabla_dias_disponibles_cesgados_instalacion_particular;
 DROP TABLE tabla_auxiliar_id_fecha;
 DROP TABLE tabla_auxiliar_dias_contados;
