@@ -1,130 +1,38 @@
-<?php include('header.html');   ?>
-
-<img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:350px;" align="left">
-<img src = "https://i.imgur.com/BGXsAAy.jpg" style="width:350px;" align="right">
+<html>
+<head>
+	<title> Mapa Yolo </title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+</head>
 <body>
-  <h1 align="center">Biblioteca Naviera </h1>
-  <p style="text-align:center;">Aquí podrás encontrar información sobre barcos, permisos, puertos y sus instalaciones.</p>
-  <p style="text-align:center;">Administración: Jadrina De Andrade e Ignacio Medel</p>
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center"> ¿Quieres buscar un puerto por su nombre?</h3>
-
-  <form align="center" action="consultas/consulta_puerto_nombre.php" method="post">
-    Nombre:
-    <input type="text" name="nombre_puerto">
-    <br/><br/>
-    <input type="submit" value="Buscar">
-  </form>
-  
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center"> ¿Quieres buscar a los jefes de un puerto?</h3>
-
-  <form align="center" action="consultas/consulta_personal.php" method="post">
-    Nombre Puerto:
-    <input type="text" name="nombre_puerto">
-    <br/><br/>
-    <input type="submit" value="Buscar">
-  </form>
-
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center"> ¿Quieres buscar las veces que un barco a atracado en un puerto?</h3>
-
-  <form align="center" action="consultas/consulta_atraque.php" method="post">
-    Nombre Puerto:
-    <input type="text" name="nombre_puerto">
-    <br/>
-    Nombre Barco:
-    <input type="text" name="nombre_barco">
-    <br/><br/>
-    <input type="submit" value="Buscar">
-  </form>
-
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center"> ¿Quieres buscar el puerto con más atraques en un mes?</h3>
-
-  <form align="center" action="consultas/consulta_puerto_mes.php" method="post">
-    Mes:
-    <input type="text" name="mes">
-    <br/>
-    Año:
-    <input type="text" name="year">
-    <br/><br/>
-    <input type="submit" value="Buscar">
-  </form>
-
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center">¿Quieres ver todos los puertos y sus ciudades?</h3>
-
-  <form align="center" action="consultas/consulta_puerto.php" method="post">
-  <button type="submit" class="btn btn-primary">Buscar</button>
-  </form>
-
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center">¿Quieres ver todos los puertos con al menos un astillero?</h3>
-
-  <form align="center" action="consultas/consulta_puerto_astillero.php" method="post">
-  <button type="submit" class="btn btn-primary">Buscar</button>
-  </form>
-
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center">¿Quieres ver la edad promedio de los trabajadores de los puertos?</h3>
-
-  <form align="center" action="consultas/consulta_personal_edad.php" method="post">
-  <button type="submit" class="btn btn-primary">Buscar</button>
-  </form>
-
-  <br>
-  <br>
-  <br>
-
-  <h3 align="center">Test</h3>
-
-  <form align="center" action="consultas/consulta_capacidad.php" method="post">
-    Tipo:
-    <input type="text" name="tipo">
-    <br/>
-    Dia 1:
-    <input type="text" name="start">
-    <br/>
-    Dia 2:
-    <input type="text" name="end">
-    <br/>
-    Patente:
-    <input type="text" name="patente">
-    <br/>
-    Actividad:
-    <input type="text" name="actividad">
-    <br/><br/>
-    <input type="submit" value="Buscar">
-  </form>
-
+	<?php echo ' <p> Hola Hola amiguitos </p>'; ?>
+	<?php 
+		$lat = -33.5
+		$long = 70.5
+		$marker_list = [
+			["lat" -> -33.4,
+			"long" -> -70.5],
+			["lat" -> -33.6,
+			"long" -> -70.5],
+			["lat" -> -33.5,
+			"long" -> -70.6],
+			 			];
+	?>
+	<div id="mapid" style="height: 180px"> </div>
 </body>
-
-</table>
-
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin=""></script>
+<script> 
+var mymap = L.map('mapid').setView([<?php echo $lat ?>, <?php echo $long ?>],10);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+	attribution: '&copy; <a href="https://wwww.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+<?php foreach($marker_list as $marker) {
+	echo 
+	'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
+	} ?>
+></script>
 </html>
