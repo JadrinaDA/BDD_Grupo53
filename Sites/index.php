@@ -19,7 +19,7 @@
 			"long" => -70.6],
 			 			];
 	?>
-	<div id="mapid" style="height: 180px"> </div>
+	<div id="mapid" style="height: 500px"> </div>
 </body>
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
