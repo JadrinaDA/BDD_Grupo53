@@ -11,14 +11,12 @@
 		$lat = -33.5;
 		$long = -70.5;
 		$marker_list = [
-			["lat" => -33.3,
-			"long" => -70.4],
 			["lat" => -33.4,
 			"long" => -70.5],
-			["lat" => -33.4
-			"long" => -70.7],
-			["lat" => -33.3,
+			["lat" => -33.6,
 			"long" => -70.5],
+			["lat" => -33.5,
+			"long" => -70.6],
 			 			];
 	?>
 	<div id="mapid" style="height: 500px"> </div>
