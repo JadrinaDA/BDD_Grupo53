@@ -34,5 +34,5 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 	echo 
 	'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
 	} ?>
-></script>
+</script>
 </html>
