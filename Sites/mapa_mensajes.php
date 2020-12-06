@@ -51,7 +51,7 @@
         foreach ($response as $message) {
             if ($message['date'] >= $start && $message['date'] <= $end)
             {
-                $marker_list.append(["lat" -> $message['lat'], "long" -> $message['long']]);
+                $marker_list = array_merge($marker_list, ["lat" -> $message['lat'], "long" -> $message['long']]);
             }
         }
     ?>
