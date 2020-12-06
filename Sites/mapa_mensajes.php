@@ -32,8 +32,7 @@
     );
     
     $context  = stream_context_create( $options );
-    $data2 = http_build_query($context);
-    $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/text-search', false, $context );
+    $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages', false);
     $response = json_decode($result, true);
 
     ?>
