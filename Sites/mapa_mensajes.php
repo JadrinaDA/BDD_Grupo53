@@ -1,5 +1,4 @@
 <html>
-<?php include('../templates/header.html');   ?>
 <head>
     <title> Mapa Yolo </title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -15,7 +14,7 @@
     #$forbidden =  explode(",", $_GET['forbidden']);
     $userId =  $_GET['ID'];
     $start = $_GET('start');
-    $end = $_GET('start');
+    $end = $_GET('end');
 
     $data = array(
         'desired' => $desired,
@@ -60,7 +59,6 @@
     ?>
     <div id="mapid" style="height: 500px"> </div>
 
-<?php include('../templates/footer.html'); ?>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 crossorigin=""></script>
