@@ -1,38 +1,18 @@
-<html>
-<head>
-	<title> Mapa Yolo </title>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-</head>
-<body>
-	<?php echo ' <p> Hola Hola amiguitos </p>'; ?>
-	<?php 
-		$lat = -33.5;
-		$long = -70.5;
-		$marker_list = [
-			["lat" => -33.4,
-			"long" => -70.5],
-			["lat" => -33.6,
-			"long" => -70.5],
-			["lat" => -33.5,
-			"long" => -70.6],
-			 			];
-	?>
-	<div id="mapid" style="height: 500px"> </div>
-</body>
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-crossorigin=""></script>
-<script> 
-var map = L.map('mapid').setView([<?php echo $lat ?>, <?php echo $long ?>],10);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-	attribution: '&copy; <a href="https://wwww.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
-<?php foreach($marker_list as $marker) {
-	echo 
-	'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
-	} ?>
-</script>
+<?php include('templates/header.html'); ?>
+<?php $id_usuario = 13; ?>
+        <h1>Aquí hacemos Requests a la API</h1>
+        <h3>Ingrese los campos que desea</h3>
+        <div class="api-requester">
+            <form align="center" action="mapa_mensajes.php" method="get">
+                <input type="hidden" name="ID" value="<?php echo $id_usuario ?>">
+                <label for="desired">Busqueda Simple:</label><br>
+                <input id="desired"> type="text" name="desired">
+                <label for="start">Fecha inicio:</label><br>
+                <input id="start" type="text" name="start">
+                <label for="end">Fecha fin:</label><br>
+                <input id="end" type="text" name="end">
+            <input type="submit" value="Buscar">
+            </form>
+        </div>
+    </body>
 </html>
