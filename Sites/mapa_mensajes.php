@@ -13,13 +13,13 @@
     #$required = explode(",",$_GET['required']);
     #$forbidden =  explode(",", $_GET['forbidden']);
     $userId =  $_GET['ID'];
-    $start = $_GET('start');
-    $end = $_GET('end');
+    $start = $_GET['start'];
+    $end = $_GET['end'];
 
     $data = array(
         'desired' => $desired,
-        'required' => $required,
-        'forbidden' => $forbidden,
+        'required' => [],
+        'forbidden' => [],
         'userId' => intval($userId)
     );
 
