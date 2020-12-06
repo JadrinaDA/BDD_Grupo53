@@ -41,8 +41,8 @@
     ?>
     <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
     <?php 
-        $lat = -33.5
-        $long = 70.5
+        $lat = -33.5;
+        $long = 70.5;
         $marker_list = [
             ["lat" -> -33.4,
             "long" -> -70.5],
