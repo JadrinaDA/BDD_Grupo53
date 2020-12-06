@@ -44,12 +44,12 @@
         $lat = -33.5;
         $long = 70.5;
         $marker_list = [
-            ["lat" -> -33.4,
-            "long" -> -70.5],
-            ["lat" -> -33.6,
-            "long" -> -70.5],
-            ["lat" -> -33.5,
-            "long" -> -70.6],
+            ["lat"  => -33.4,
+            "long"  => -70.5],
+            ["lat"  => -33.6,
+            "long"  => -70.5],
+            ["lat"  => -33.5,
+            "long"  => -70.6],
                         ];
         foreach ($response as $message) {
             if ($message['date'] >= start && $message['date'] <= end)
@@ -58,7 +58,7 @@
             }
         }
     ?>
-    <div id="mapid" style="height: 180px"> </div>
+    <div id="mapid" style="height: 500px"> </div>
 
 <?php include('../templates/footer.html'); ?>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
