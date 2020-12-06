@@ -56,12 +56,12 @@
         }
     ?>
     <div id="mapid" style="height: 500px"> </div>
-
+</body>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 crossorigin=""></script>
 <script> 
-var mymap = L.map('mapid').setView([<?php echo $lat ?>, <?php echo $long ?>],10);
+var map = L.map('mapid').setView([<?php echo $lat ?>, <?php echo $long ?>],10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://wwww.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
