@@ -1,4 +1,4 @@
-<?php include('templates/header.html'); ?>
+<html>
 <?php $id_usuario = 13; ?>
         <h1>Aquí hacemos Requests a la API</h1>
         <h3>Ingrese los campos que desea</h3>
