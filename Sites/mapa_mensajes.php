@@ -51,7 +51,7 @@
         foreach ($response as $message) {
             if ($message['date'] >= $start && $message['date'] <= $end)
             {
-                $marker_list = array_merge($marker_list, ["lat" -> $message['lat'], "long" -> $message['long']]);
+                $marker_list = array_merge($marker_list, ["lat" => $message['lat'], "long" => $message['long']]);
             }
         }
     ?>
@@ -69,5 +69,5 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     echo 
     'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
     } ?>
-></script>
+</script>
 </html>
