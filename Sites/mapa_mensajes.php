@@ -49,7 +49,7 @@
             "long"  => -70.6],
                         ];
         foreach ($response as $message) {
-            if ($message['date'] >= start && $message['date'] <= end)
+            if ($message['date'] >= $start && $message['date'] <= $end)
             {
                 $marker_list.append(["lat" -> $message['lat'], "long" -> $message['long']]);
             }
