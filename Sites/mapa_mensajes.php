@@ -32,9 +32,8 @@
     );
     
     $context  = stream_context_create( $options );
-
-    $result = fopen( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages','r', false);
-    echo 'ESTA RETORNANDO ESTO: $result';
+    $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages', false);
+    echo $result;
     $response = json_decode($result, true);
 
     ?>
