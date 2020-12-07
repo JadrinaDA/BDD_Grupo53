@@ -49,8 +49,9 @@
             ["lat"  => -33.5,
             "long"  => -70.6],
                         ];
-        foreach ($response as $message) {
-            echo $message['date'];
+        echo $response;
+        // foreach ($response as $message) {
+        //     echo $message['date'];
             // if (date($message['date']) >= $start && date($message['date']) <= $end)
             // {
             //     $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
