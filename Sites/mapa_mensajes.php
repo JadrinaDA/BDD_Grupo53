@@ -34,7 +34,7 @@
     
     $context  = stream_context_create( $options );
     $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/text-search', false, $context);
-    $response = json_decode($result, true);
+    // $response = json_decode($result, true);
 
     ?>
     <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
