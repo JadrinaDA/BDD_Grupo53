@@ -10,8 +10,8 @@
     <?php 
     # Aquí deberían manejar los casos en los que no se ingrese información en alguno de los inputs del form, por simplicidad  
     $desired = explode(",", $_GET['desired']);
-    #$required = explode(",",$_GET['required']);
-    #$forbidden =  explode(",", $_GET['forbidden']);
+    $required = explode(",",$_GET['required']);
+    $forbidden =  explode(",", $_GET['forbidden']);
     $userId =  $_GET['ID'];
     $start = $_GET['start'];
     $end = $_GET['end'];
@@ -32,7 +32,7 @@
     );
     
     $context  = stream_context_create( $options );
-    $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages', false);
+    $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages', false, $context);
     echo $result;
     $response = json_decode($result, true);
 
