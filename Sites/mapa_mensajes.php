@@ -13,10 +13,10 @@
     $required = explode(",",$_GET['required']);
     $forbidden =  explode(",", $_GET['forbidden']);
     $userId =  $_GET['ID'];
-    echo $userId;
     $start = date($_GET['start']);
     $end = date($_GET['end']);
-
+    echo $start;
+    echo $end;
     $data = array(
         'desired' => $desired,
         'userId' => $userId
@@ -50,10 +50,11 @@
             "long"  => -70.6],
                         ];
         foreach ($response as $message) {
-            if (date($message['date']) >= $start && date($message['date']) <= $end)
-            {
-                $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
-            }
+            echo $message['date'];
+            // if (date($message['date']) >= $start && date($message['date']) <= $end)
+            // {
+            //     $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
+            // }
         }
     ?>
     <div id="mapid" style="height: 500px"> </div>
