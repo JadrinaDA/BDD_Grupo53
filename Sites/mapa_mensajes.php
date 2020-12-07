@@ -12,14 +12,14 @@
     $desired = explode(",", $_GET['desired']);
     $required = explode(",",$_GET['required']);
     $forbidden =  explode(",", $_GET['forbidden']);
-    $userId =  strval($_GET['ID']);
+    $userId =  $_GET['ID'];
     $start = date($_GET['start']);
     $end = date($_GET['end']);
     echo $start;
     echo $end;
     $data = array(
         'desired' => $desired,
-        'userId' => $userId
+        'userId' => intval($userId)
     );
 
 
