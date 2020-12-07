@@ -56,7 +56,7 @@
             // {
             //     $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
             // }
-        }
+        // }
     ?>
     <div id="mapid" style="height: 500px"> </div>
 </body>
