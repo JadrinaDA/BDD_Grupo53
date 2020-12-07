@@ -18,7 +18,7 @@
 
     $data = array(
         'desired' => $desired,
-        'userId' => intval($userId)
+        'userId' => $userId
     );
 
 
