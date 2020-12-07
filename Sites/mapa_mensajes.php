@@ -14,8 +14,8 @@
     $forbidden =  explode(",", $_GET['forbidden']);
     $userId =  $_GET['ID'];
     echo $userId;
-    $start = strtodate($_GET['start']);
-    $end = strtodate($_GET['end']);
+    $start = date($_GET['start']);
+    $end = date($_GET['end']);
 
     $data = array(
         'desired' => $desired,
@@ -50,7 +50,7 @@
             "long"  => -70.6],
                         ];
         foreach ($response as $message) {
-            if (strtodate($message['date']) >= $start && strtodate($message['date']) <= $end)
+            if (date($message['date']) >= $start && date($message['date']) <= $end)
             {
                 $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
             }
