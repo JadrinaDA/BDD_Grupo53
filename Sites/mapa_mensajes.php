@@ -13,6 +13,7 @@
     $required = explode(",",$_GET['required']);
     $forbidden =  explode(",", $_GET['forbidden']);
     $userId =  $_GET['ID'];
+    echo $userId;
     $start = $_GET['start'];
     $end = $_GET['end'];
 
@@ -33,7 +34,6 @@
     
     $context  = stream_context_create( $options );
     $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/text-search', false, $context);
-    echo $result;
     $response = json_decode($result, true);
 
     ?>
@@ -50,7 +50,7 @@
             "long"  => -70.6],
                         ];
         foreach ($response as $message) {
-            if ($message['date'] >= $start && $message['date'] <= $end)
+            if (date($message['date']) >= $start && date($message['date']) <= $end)
             {
                 $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
             }
