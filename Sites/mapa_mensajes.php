@@ -34,8 +34,8 @@
     $context  = stream_context_create( $options );
 
     $result = fopen( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages','r', false);
-    $result_emergency = implode("|",$result);
-    $response = json_decode($result_emergency, true);
+    echo $result;
+    $response = json_decode($result, true);
 
     ?>
     <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
