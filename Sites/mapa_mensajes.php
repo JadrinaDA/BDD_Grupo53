@@ -12,7 +12,7 @@
     $desired = explode(",", $_GET['desired']);
     $required = explode(",",$_GET['required']);
     $forbidden =  explode(",", $_GET['forbidden']);
-    $userId =  $_GET['ID'];
+    $userId =  strval($_GET['ID']);
     $start = date($_GET['start']);
     $end = date($_GET['end']);
     echo $start;
