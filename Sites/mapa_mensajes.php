@@ -32,7 +32,8 @@
     );
     
     $context  = stream_context_create( $options );
-    $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages', false);
+
+    $result = fopen( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/messages','r', false) or die("File does not exist!");
     $response = json_decode($result, true);
 
     ?>
