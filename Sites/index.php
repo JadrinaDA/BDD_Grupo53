@@ -8,10 +8,6 @@
                 <input id="ID" type="int" name="ID">
                 <label for="desired">Busqueda Simple:</label><br>
                 <input id="desired" type="text" name="desired">
-                <label for="required">Busqueda Des:</label><br>
-                <input id="required" type="text" name="required">
-                <label for="forbidden">Busqueda For:</label><br>
-                <input id="forbidden" type="text" name="forbidden">
                 <label for="start">Fecha inicio:</label><br>
                 <input id="start" type="date" name="start">
                 <label for="end">Fecha fin:</label><br>

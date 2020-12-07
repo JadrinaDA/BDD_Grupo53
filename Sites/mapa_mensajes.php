@@ -10,8 +10,6 @@
     <?php 
     # Aquí deberían manejar los casos en los que no se ingrese información en alguno de los inputs del form, por simplicidad  
     $desired = explode(",", $_GET['desired']);
-    $required = explode(",",$_GET['required']);
-    $forbidden =  explode(",", $_GET['forbidden']);
     $userId =  $_GET['ID'];
     $start = date($_GET['start']);
     $end = date($_GET['end']);
