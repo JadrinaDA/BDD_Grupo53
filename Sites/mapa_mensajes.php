@@ -67,7 +67,7 @@
     $query_coords ->execute();
     $coords  = $query_coords -> fetchAll();
 
-    if $coords != 'None'
+    if ($coords != 'None')
     {
         $latlong = explode(",", $coords);
         $lat = $latlong[0];
