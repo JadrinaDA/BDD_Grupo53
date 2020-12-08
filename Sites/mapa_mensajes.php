@@ -56,12 +56,24 @@
 
 // ACA LAS CONSULTAS RESPECTO A SI ES JEFE/CAPITAN Y SUS MARKERS.
     require("../config/conexion.php");
-    $query_jefe = "SELECT Navieras.nnombre FROM Navieras WHERE Navieras.nid = $nid;
-    ";
-    
+    $new_id = $userId - 1;
+    $query_jefe = "SELECT usuarios.pasaporte FROM usuarios WHERE usuarios.uid = $new_id;";
     $result = $db_buques -> prepare($query_jefe);
     $result -> execute();
-    $titulos = $result -> fetchAll();
+    $rut = $result -> fetchAll();
+
+    $query_str_coords = "SELECT markers_jefe('$rut');";
+    $query_coords = $db_puertos -> prepare($query_str_coords);
+    $query_coords ->execute();
+    $coords  = $query_coords -> fetchAll();
+
+    if $coords != 'None'
+    {
+        $latlong = explode(",", $coords);
+        $lat = $latlong[0];
+        $long = $latlong[1];
+        $marker_list = array_merge($marker_list, [["lat" => $lat, "long" => $long]]);
+    }
 
 
     ?>
