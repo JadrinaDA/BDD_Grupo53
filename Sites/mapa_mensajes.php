@@ -33,7 +33,6 @@
     $context  = stream_context_create( $options );
     $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/text-search', false, $context);
     $response = json_decode($result, true);
-
     ?>
     <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
     <?php 
@@ -54,6 +53,8 @@
                  $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
              }
         }
+
+// ACA LAS CONSULTAS RESPECTO A SI ES JEFE/CAPITAN Y SUS MARKERS.
     ?>
     <div id="mapid" style="height: 500px"> </div>
 </body>
