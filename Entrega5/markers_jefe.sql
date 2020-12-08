@@ -1,6 +1,7 @@
 CREATE OR REPLACE FUNCTION markers_jefe (rut VARCHAR)
 RETURNS VARCHAR
 AS $$
+DECLARE
 es_jefe INTEGER;
 jefe_de INTEGER;
 nombre_puerto VARCHAR;
