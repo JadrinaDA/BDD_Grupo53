@@ -36,8 +36,8 @@
     ?>
     <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
     <?php 
-        $lat = -33.5;
-        $long = 70.5;
+        $lat_focus = -33.5;
+        $long_focus = 70.5;
         $marker_list = [
             ["lat"  => -33.4,
             "long"  => -70.5],
@@ -84,7 +84,7 @@
 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 crossorigin=""></script>
 <script> 
-var map = L.map('mapid').setView([<?php echo $lat ?>, <?php echo $long ?>],10);
+var map = L.map('mapid').setView([<?php echo $lat_focus ?>, <?php echo $long_focus ?>],10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://wwww.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
