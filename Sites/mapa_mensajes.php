@@ -60,8 +60,8 @@
     $query_jefe = "SELECT usuarios.pasaporte FROM usuarios WHERE usuarios.uid = $new_id;";
     $result = $db_buques -> prepare($query_jefe);
     $result -> execute();
-    $rut = $result -> fetchAll();
-    echo $rut[0][0];
+    $rut_array = $result -> fetchAll();
+    $rut = $rut_array[0][0];
 
     $query_str_coords = "SELECT * FROM markers_jefe('$rut');";
     $query_coords = $db_puertos -> prepare($query_str_coords);
