@@ -9,7 +9,7 @@ coordenadas_x FLOAT;
 coordenadas_y FLOAT;
 coordenadas_string VARCHAR;
 BEGIN
-es_jefe := (SELECT COUNT(jefes.iid) FROM jefes WHERE jefes.rut=rut_jefe);
+es_jefe := (SELECT COUNT(jefes.iid) FROM jefes WHERE jefes.rut=rut_jefe GROUP BY jefes.iid);
 IF es_jefe = 1 THEN
 jefe_de := (SELECT jefes.iid FROM jefes WHERE jefes.rut=rut);
 nombre_puerto_jefe := (SELECT pertenece_a.nombre_puerto FROM pertenece_a WHERE pertenece_a.iid=jefe_de);
