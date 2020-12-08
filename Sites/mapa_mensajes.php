@@ -55,7 +55,7 @@
         }
 
 // ACA LAS CONSULTAS RESPECTO A SI ES JEFE/CAPITAN Y SUS MARKERS.
-    require("../config/conexion.php");
+    require("config/conexion.php");
     $new_id = $userId - 1;
     $query_jefe = "SELECT usuarios.pasaporte FROM usuarios WHERE usuarios.uid = $new_id;";
     $result = $db_buques -> prepare($query_jefe);
