@@ -66,6 +66,7 @@
     $query_coords = $db_puertos -> prepare($query_str_coords);
     $query_coords ->execute();
     $coords  = $query_coords -> fetchAll();
+    echo $coords[0][0];
     if ($coords[0][0] != 'None')
     {
         $latlong = explode(",", $coords[0][0]);
