@@ -18,3 +18,6 @@ coordenadas_string := CONCAT(coordenadas_x,',',coordenadas_y);
 ELSE 
 coordenadas_string := 'None';
 END IF;
+RETURN coordenadas_string;
+END;
+$$ language plpgsql
