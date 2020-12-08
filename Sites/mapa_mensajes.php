@@ -55,6 +55,15 @@
         }
 
 // ACA LAS CONSULTAS RESPECTO A SI ES JEFE/CAPITAN Y SUS MARKERS.
+    require("../config/conexion.php");
+    $query_jefe = "SELECT Navieras.nnombre FROM Navieras WHERE Navieras.nid = $nid;
+    ";
+    
+    $result = $db_buques -> prepare($query_jefe);
+    $result -> execute();
+    $titulos = $result -> fetchAll();
+
+
     ?>
     <div id="mapid" style="height: 500px"> </div>
 </body>
