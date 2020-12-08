@@ -68,7 +68,7 @@
     $coords  = $query_coords -> fetchAll();
     foreach ($coords as $coor)
     {
-        echo $coor;
+        echo $coor[0];
     }
     if ($coords != 'None')
     {
