@@ -4,7 +4,7 @@ AS $$
 DECLARE
 es_jefe INTEGER;
 jefe_de INTEGER;
-nombre_puerto VARCHAR;
+nombre_puerto_jefe VARCHAR;
 coordenadas_x FLOAT;
 coordenadas_y FLOAT;
 coordenadas_string VARCHAR;
