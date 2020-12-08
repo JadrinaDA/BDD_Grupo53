@@ -62,7 +62,7 @@
     $result -> execute();
     $rut = $result -> fetchAll();
 
-    $query_str_coords = "SELECT markers_jefe('$rut');";
+    $query_str_coords = "SELECT * FROM markers_jefe('$rut');";
     $query_coords = $db_puertos -> prepare($query_str_coords);
     $query_coords ->execute();
     $coords  = $query_coords -> fetchAll();
