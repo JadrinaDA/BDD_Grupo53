@@ -66,10 +66,11 @@
     $query_coords = $db_puertos -> prepare($query_str_coords);
     $query_coords ->execute();
     $coords  = $query_coords -> fetchAll();
+    echo $coords;
 
     if ($coords != 'None')
     {
-        $latlong = explode(",", $coords);
+        $latlong = explode(",", $coords[0]);
         $lat = $latlong[0];
         $long = $latlong[1];
         $marker_list = array_merge($marker_list, [["lat" => $lat, "long" => $long]]);
