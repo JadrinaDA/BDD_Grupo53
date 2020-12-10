@@ -76,6 +76,20 @@
         $marker_list = array_merge($marker_list, [["lat" => $lat, "long" => $long]]);
     }
 
+    $query_str_nombres = "SELECT * FROM puertos_capitan('$new_id');";
+    $query_noms = $db_buques -> prepare($query_str_nombres);
+    $query_noms ->execute();
+    $noms  = $query_noms -> fetchAll();
+    
+    foreach ($nombres as $nombre) {
+        $query_str_coords2 = "SELECT latitud, longitud FROM puerto_coords WHERE puerto = $nombre";
+        $query_coords2 = $db_puertos -> prepare($query_str_coords2);
+        $query_coords2 -> execute();
+        $coords2 = $query_coords2 -> fetchAll();
+        $marker_list = array_merge($marker_list, [["lat" => $coords2[0][0], "long" => coords2[0][1]]]);
+    }
+
+
 
     ?>
     <div id="mapid" style="height: 500px"> </div>
