@@ -90,7 +90,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     }).addTo(map);
 <?php foreach($marker_list as $marker) {
     echo 
-    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon('maps.google.com/mapfiles/ms/icons/blue-dot.png').addTo(map);';
+    "L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png').addTo(map);";
     } ?>
 </script>
 </html>
