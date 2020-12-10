@@ -89,6 +89,9 @@
         $query_coords2 -> execute();
         $coords2 = $query_coords2 -> fetchAll();
         echo "hola!";
+        foreach ($coords2 as $cds) {
+            echo $cds;
+        }
         echo $coords2;
         $marker_list = array_merge($marker_list, [["lat" => $coords2[0][0], "long" => $coords2[0][1]]]);
     }
