@@ -36,21 +36,16 @@
     ?>
     <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
     <?php 
-        $lat_focus = -33.5;
-        $long_focus = 70.5;
-        $marker_list = [
-            ["lat"  => -33.4,
-            "long"  => -70.5],
-            ["lat"  => -33.6,
-            "long"  => -70.5],
-            ["lat"  => -33.5,
-            "long"  => -70.6],
-                        ];
+        $lat_focus = -33.32;
+        $long_focus = 70.32;
+        $marker_jefes = [];
+        $marker_mensajes = [];
+        $marker_puertos = [];
         foreach ($response as $message) {
             echo $message['message'];
             if (date($message['date']) >= $start && date($message['date']) <= $end)
             {
-                 $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
+                 $marker_mensajes = array_merge($marker_mensajes, [["lat" => $message['lat'], "long" => $message['long']]]);
              }
         }
 
@@ -73,8 +68,24 @@
         $latlong = explode(",", $coords[0][0]);
         $lat = $latlong[0];
         $long = $latlong[1];
-        $marker_list = array_merge($marker_list, [["lat" => $lat, "long" => $long]]);
+        $marker_jefes = array_merge($marker_jefes, [["lat" => $lat, "long" => $long]]);
     }
+
+    $query_str_nombres = "SELECT * FROM puertos_capitan('$new_id');";
+    $query_noms = $db_buques -> prepare($query_str_nombres);
+    $query_noms ->execute();
+    $noms  = $query_noms -> fetchAll();
+    
+    foreach ($noms as $nombre) {
+        echo $nombre[0];
+        $nom = $nombre[0];
+        $query_str_coords2 = "SELECT latitud, longitud FROM puerto_coords WHERE puerto = '$nom'";
+        $query_coords2 = $db_puertos -> prepare($query_str_coords2);
+        $query_coords2 -> execute();
+        $coords2 = $query_coords2 -> fetchAll();
+        $marker_puertos = array_merge($marker_puertos, [["lat" => $coords2[0][0], "long" => $coords2[0][1]]]);
+    }
+
 
 
     ?>
@@ -94,9 +105,30 @@ iconSize: [25, 41],
 iconAnchor: [12, 41],
 popupAnchor: [1, -34],
 });
-<?php foreach($marker_list as $marker) {
-    echo  
+var blueIcon = new L.Icon({
+iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+iconSize: [25, 41],
+iconAnchor: [12, 41],
+popupAnchor: [1, -34],
+});
+var redIcon = new L.Icon({
+iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+iconSize: [25, 41],
+iconAnchor: [12, 41],
+popupAnchor: [1, -34],
+});
+<?php foreach($marker_jefes as $marker) {
+    echo 
     'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']' . ',' . '{icon: greenIcon}).addTo(map);';
-    } ?>
+    } 
+    foreach($marker_mensajes as $marker) {
+    echo 
+    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']' . ',' . '{icon: blueIcon}).addTo(map);';
+    }
+    foreach($marker_puertos as $marker) {
+    echo 
+    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']' . ',' . '{icon: redIcon}).addTo(map);';
+    }
+    ?>
 </script>
 </html>
