@@ -36,16 +36,21 @@
     ?>
     <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
     <?php 
-        $lat_focus = -33.32;
-        $long_focus = 70.32;
-        $marker_jefes = [];
-        $marker_mensajes = [];
-        $marker_puertos = [];
+        $lat_focus = -33.5;
+        $long_focus = 70.5;
+        $marker_list = [
+            ["lat"  => -33.4,
+            "long"  => -70.5],
+            ["lat"  => -33.6,
+            "long"  => -70.5],
+            ["lat"  => -33.5,
+            "long"  => -70.6],
+                        ];
         foreach ($response as $message) {
             echo $message['message'];
             if (date($message['date']) >= $start && date($message['date']) <= $end)
             {
-                 $marker_mensajes = array_merge($marker_mensajes, [["lat" => $message['lat'], "long" => $message['long']]]);
+                 $marker_list = array_merge($marker_list, [["lat" => $message['lat'], "long" => $message['long']]]);
              }
         }
 
@@ -68,24 +73,8 @@
         $latlong = explode(",", $coords[0][0]);
         $lat = $latlong[0];
         $long = $latlong[1];
-        $marker_jefes = array_merge($marker_jefes, [["lat" => $lat, "long" => $long]]);
+        $marker_list = array_merge($marker_list, [["lat" => $lat, "long" => $long]]);
     }
-
-    $query_str_nombres = "SELECT * FROM puertos_capitan('$new_id');";
-    $query_noms = $db_buques -> prepare($query_str_nombres);
-    $query_noms ->execute();
-    $noms  = $query_noms -> fetchAll();
-    
-    foreach ($noms as $nombre) {
-        echo $nombre[0];
-        $nom = $nombre[0];
-        $query_str_coords2 = "SELECT latitud, longitud FROM puerto_coords WHERE puerto = '$nom'";
-        $query_coords2 = $db_puertos -> prepare($query_str_coords2);
-        $query_coords2 -> execute();
-        $coords2 = $query_coords2 -> fetchAll();
-        $marker_puertos = array_merge($marker_puertos, [["lat" => $coords2[0][0], "long" => $coords2[0][1]]]);
-    }
-
 
 
     ?>
@@ -99,18 +88,9 @@ var map = L.map('mapid').setView([<?php echo $lat_focus ?>, <?php echo $long_foc
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://wwww.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-<?php foreach($marker_jefes as $marker) {
+<?php foreach($marker_list as $marker) {
     echo 
-    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
-    } 
-    foreach($marker_mensajes as $marker) {
-    echo 
-    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
-    }
-    foreach($marker_puertos as $marker) {
-    echo 
-    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
-    }
-    ?>
+    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon('maps.google.com/mapfiles/ms/icons/blue-dot.png').addTo(map);';
+    } ?>
 </script>
 </html>
