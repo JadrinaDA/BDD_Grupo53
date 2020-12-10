@@ -38,9 +38,8 @@
         $marker_mensajes = [];
         $marker_puertos = [];
         foreach ($response as $message) {
-            echo $message['message'];
             if (($message['sender'] == intval($userId) || $message['receptant'] == intval($userId)) && date($message['date']) >= $start && date($message['date']) <= $end)
-            {
+            {   echo $message['message'];
                  $marker_mensajes = array_merge($marker_mensajes, [["lat" => $message['lat'], "long" => $message['long']]]);
              }
         }
@@ -58,7 +57,6 @@
     $query_coords = $db_puertos -> prepare($query_str_coords);
     $query_coords ->execute();
     $coords  = $query_coords -> fetchAll();
-    echo $coords[0][0];
     if ($coords[0][0] != 'None')
     {
         $latlong = explode(",", $coords[0][0]);
