@@ -81,7 +81,7 @@
     $query_noms ->execute();
     $noms  = $query_noms -> fetchAll();
     
-    foreach ($nombres as $nombre) {
+    foreach ($noms as $nombre) {
         $query_str_coords2 = "SELECT latitud, longitud FROM puerto_coords WHERE puerto = $nombre";
         $query_coords2 = $db_puertos -> prepare($query_str_coords2);
         $query_coords2 -> execute();
