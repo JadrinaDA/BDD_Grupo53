@@ -33,7 +33,7 @@
     ?>
     <?php 
         $lat_focus = -33.32;
-        $long_focus = 70.32;
+        $long_focus = -70.32;
         $marker_jefes = [];
         $marker_mensajes = [];
         $marker_puertos = [];
