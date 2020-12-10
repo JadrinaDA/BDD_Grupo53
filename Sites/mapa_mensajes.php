@@ -82,10 +82,13 @@
     $noms  = $query_noms -> fetchAll();
     
     foreach ($noms as $nombre) {
+        echo $nombre;
         $query_str_coords2 = "SELECT latitud, longitud FROM puerto_coords WHERE puerto = $nombre";
         $query_coords2 = $db_puertos -> prepare($query_str_coords2);
         $query_coords2 -> execute();
         $coords2 = $query_coords2 -> fetchAll();
+        echo $coords2[0][0];
+        echo $coords2[0][1];
         $marker_list = array_merge($marker_list, [["lat" => $coords2[0][0], "long" => $coords2[0][1]]]);
     }
 
