@@ -84,12 +84,15 @@
     foreach ($noms as $nombre) {
         echo $nombre[0];
         $nom = $nombre[0];
-        $query_str_coords2 = "SELECT latitud, longitud FROM puerto_coords WHERE puerto = $nom";
+        $query_str_coords2 = "SELECT latitud, longitud FROM puerto_coords WHERE puerto = '$nom'";
         $query_coords2 = $db_puertos -> prepare($query_str_coords2);
         $query_coords2 -> execute();
         $coords2 = $query_coords2 -> fetchAll();
         echo "hola!";
         foreach ($coords2 as $cds) {
+            echo $cds;
+            echo $cds[0];
+            echo $cds[0][0];
             echo $cds[0][0][0];
         }
         echo $coords2;
