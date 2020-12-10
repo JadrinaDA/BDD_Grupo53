@@ -89,8 +89,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://wwww.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 <?php foreach($marker_list as $marker) {
-    echo 
-    "L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png').addTo(map);";
+    $verde = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+    echo  
+    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon($verde).addTo(map);';
     } ?>
 </script>
 </html>
