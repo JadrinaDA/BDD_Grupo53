@@ -13,11 +13,8 @@
     $userId =  $_GET['ID'];
     $start = date($_GET['start']);
     $end = date($_GET['end']);
-    echo $start;
-    echo $end;
     $data = array(
         'desired' => $desired,
-        'userId' => intval($userId)
     );
 
 
@@ -34,7 +31,6 @@
     $result = file_get_contents( 'https://iic2413-grupo14-53-2020-2.herokuapp.com/text-search', false, $context);
     $response = json_decode($result, true);
     ?>
-    <?php echo ' <p> Hola Hola amiguitos </p>'; ?>
     <?php 
         $lat_focus = -33.32;
         $long_focus = 70.32;
@@ -43,7 +39,7 @@
         $marker_puertos = [];
         foreach ($response as $message) {
             echo $message['message'];
-            if (date($message['date']) >= $start && date($message['date']) <= $end)
+            if (($message['sender'] == intval($userId) || $message['receptant'] == intval($userId)) && date($message['date']) >= $start && date($message['date']) <= $end)
             {
                  $marker_mensajes = array_merge($marker_mensajes, [["lat" => $message['lat'], "long" => $message['long']]]);
              }
