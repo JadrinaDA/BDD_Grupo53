@@ -101,15 +101,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     }).addTo(map);
 <?php foreach($marker_jefes as $marker) {
     echo 
-    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon('maps.google.com/mapfiles/ms/icons/green-dot.png').addTo(map);';
+    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
     } 
     foreach($marker_mensajes as $marker) {
     echo 
-    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon('maps.google.com/mapfiles/ms/icons/red-dot.png').addTo(map);';
+    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
     }
     foreach($marker_puertos as $marker) {
     echo 
-    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).setIcon('maps.google.com/mapfiles/ms/icons/blue-dot.png').addTo(map);';
+    'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']).addTo(map);';
     }
     ?>
 </script>
