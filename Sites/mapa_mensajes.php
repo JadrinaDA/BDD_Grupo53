@@ -88,13 +88,13 @@ var map = L.map('mapid').setView([<?php echo $lat_focus ?>, <?php echo $long_foc
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://wwww.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+var greenIcon = new L.Icon({
+iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+iconSize: [25, 41],
+iconAnchor: [12, 41],
+popupAnchor: [1, -34],
+});
 <?php foreach($marker_list as $marker) {
-    var greenIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    });
     echo  
     'L.marker([' . $marker["lat"] . ',' . $marker["long"] . ']' . ',' . '{icon: greenIcon}).addTo(map);';
     } ?>
