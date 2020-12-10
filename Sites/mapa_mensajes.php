@@ -39,7 +39,7 @@
         $marker_puertos = [];
         foreach ($response as $message) {
             if (($message['sender'] == intval($userId) || $message['receptant'] == intval($userId)) && date($message['date']) >= $start && date($message['date']) <= $end)
-            {   echo $message['message'];
+            {   
                  $marker_mensajes = array_merge($marker_mensajes, [["lat" => $message['lat'], "long" => $message['long']]]);
              }
         }
